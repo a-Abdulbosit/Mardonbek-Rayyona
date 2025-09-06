@@ -1,283 +1,235 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mardanbek & Rayyona</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mardanbek & Rayyona</title>
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-    <style>
-        .wedding-font {
-            font-family: 'Great Vibes', cursive;
-        }
-    </style>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display&display=swap" rel="stylesheet">
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- AOS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
-    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-    <!-- Mobile-optimized only CSS -->
-    <style>
-    html {
-        scroll-behavior: smooth;
-    }
-
+  <style>
     body {
-        background: #1a1a2e; /* deep navy */
-        font-family: 'Playfair Display', serif;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-        position: relative;
+      background: #1a1a2e;
+      font-family: 'Playfair Display', serif;
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+      position: relative;
     }
 
-    /* Outer beige frame */
+    /* Outer azure frame */
     body::before {
-        content: "";
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        background: #f5f5dc; /* beige */
-        z-index: -2;
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: #F0FFFF; /* soft azure */
+      z-index: -2;
     }
 
-    /* Inner navy background with margin (creates border effect) */
+    /* Inner navy card */
     body::after {
-        content: "";
-        position: fixed;
-        top: 20px; left: 20px;
-        right: 20px; bottom: 20px;
-        background: #1a1a2e; /* navy */
-        border-radius: 20px;
-        box-shadow: 0 0 40px rgba(0,0,0,0.5);
-        z-index: -1;
+      content: "";
+      position: fixed;
+      top: 15px; left: 15px; right: 15px; bottom: 15px;
+      background: #1a1a2e;
+      border-radius: 18px;
+      box-shadow: 0 0 35px rgba(0,0,0,0.6);
+      z-index: -1;
     }
 
     .text-shadow {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
     }
 
     .wedding-font {
-        font-family: 'Great Vibes', cursive;
+      font-family: 'Great Vibes', cursive;
+    }
+
+    /* Monogram */
+    .monogram {
+      width: 95px;
+      height: 95px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      background: linear-gradient(#1a1a2e, #1a1a2e) padding-box,
+                  linear-gradient(135deg, #FFD700, #FFFACD) border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 12px rgba(255, 215, 0, 0.5);
+    }
+    .monogram span {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      color: #fff;
+    }
+
+    /* Title */
+    .title {
+      font-size: 32px;
+      color: #fff;
+      font-style: italic;
+      text-align: center;
+      margin-top: 10px;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+      position: relative;
+    }
+    .title::after {
+      content: "";
+      display: block;
+      width: 60%;
+      height: 2px;
+      margin: 8px auto 0;
+      background: linear-gradient(to right, transparent, #FFD700, transparent);
     }
 
     /* Flowers */
     .flower-left,
     .flower-right {
-        width: 180px; 
-        max-width: 45%; 
-        position: absolute;
-        z-index: 0; /* behind text */
+      width: 140px;
+      max-width: 40%;
+      position: absolute;
+      z-index: 0;
+      opacity: 0.9;
     }
-    
-    .flower-left {
-        top: -60px;
-        left: -70px;
-    }
-    
-    .flower-right {
-        bottom: -60px;
-        right: -70px;
-    }
+    .flower-left { top: -50px; left: -60px; }
+    .flower-right { bottom: -50px; right: -60px; }
 
     /* Flower animations */
     @keyframes flowerFadeLeft {
-        from { opacity: 0; transform: translateX(-50px) rotate(15deg); }
-        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+      from { opacity: 0; transform: translateX(-40px) rotate(15deg); }
+      to { opacity: 1; transform: translateX(0) rotate(35deg); }
     }
     @keyframes flowerFadeRight {
-        from { opacity: 0; transform: translateX(50px) rotate(15deg); }
-        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+      from { opacity: 0; transform: translateX(40px) rotate(15deg); }
+      to { opacity: 1; transform: translateX(0) rotate(35deg); }
     }
+    .flower-animate-left { animation: flowerFadeLeft 1.5s ease forwards; }
+    .flower-animate-right { animation: flowerFadeRight 1.5s ease forwards; }
 
-    .flower-animate-left {
-        animation: flowerFadeLeft 1.5s ease forwards;
-    }
-    .flower-animate-right {
-        animation: flowerFadeRight 1.5s ease forwards;
-    }
+    /* Keep content above */
+    .content-layer { position: relative; z-index: 2; }
 
-    /* Content always above */
-    .content-layer {
-        position: relative;
-        z-index: 2;
-    }
-</style>
-
-
+    /* Mobile fixes */
+    h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
+    h2, h3, p { padding-left: 0.5rem; padding-right: 0.5rem; }
+  </style>
 </head>
 <body>
 
-    <!-- Music autoplay -->
-    <audio id="bg-music" autoplay muted loop preload="auto">
-        <source src="wedding (online-audio-converter.com).mp3" type="audio/mpeg" />
-    </audio>
+  <!-- Music autoplay -->
+  <audio id="bg-music" autoplay muted loop preload="auto">
+    <source src="wedding.mp3" type="audio/mpeg" />
+  </audio>
 
-    <!-- Content -->
-    <main class="max-w-full w-full p-2 overflow-x-hidden mx-auto content-layer min-h-screen">
-        <div class="flex flex-col gap-5">
+  <main class="max-w-full w-full px-2 overflow-x-hidden mx-auto content-layer min-h-screen">
+    <div class="flex flex-col gap-5">
 
-            <nav class="flex flex-col items-center gap-5 mb-20" data-aos="fade-down">
-    <!-- Monogram -->
-                <div class="monogram">
-                    <span>MR</span>
-                </div>
-            
-                <!-- Title -->
-                <div class="title">Taklifnoma</div>
-            </nav>
+      <!-- Monogram + Title -->
+      <nav class="flex flex-col items-center gap-3 mb-12" data-aos="fade-down">
+        <div class="monogram"><span>MR</span></div>
+        <div class="title">Taklifnoma</div>
+      </nav>
 
+      <!-- Couple Section -->
+      <div class="relative py-5 space-y-5 text-shadow">
+        <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
+        <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
 
-            <!-- Couple Section -->
-            <div class="relative py-5 space-y-5 text-shadow">
-                <img src="images/leftflower-removebg-preview.png" 
-     class="flower-left flower-animate-left" 
-     alt="flower" />
+        <h1 class="wedding-font text-white text-shadow text-center" data-aos="fade-right">Mardanbek</h1>
+        <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
+        <h1 class="wedding-font text-white text-shadow text-center" data-aos="fade-left">Rayyona</h1>
+      </div>
 
-<img src="images/rightflower-removebg-preview.png" 
-     class="flower-right flower-animate-right" 
-     alt="flower" />
+      <!-- Divider -->
+      <div class="flex justify-center py-10">
+        <div class="w-[80%] h-[2px] bg-gradient-to-r from-transparent via-yellow-400 to-transparent"></div>
+      </div>
 
+      <!-- Details Section -->
+      <div id="details" class="relative pt-10 text-center">
+        <h2 class="text-3xl text-white wedding-font text-shadow mb-3" data-aos="flip-up">Assalomu alaykum</h2>
+        <p class="text-white italic text-shadow text-sm" data-aos="fade-up">
+          Ҳурматли қадрдонлар! Сизни никоҳ тўйимиз муносабати билан бўлиб ўтадиган «Висол оқшоми» кечасининг азиз меҳмони бўлишингизга таклиф этамиз.
+        </p>
+        <p class="text-white italic text-shadow text-sm mt-3" data-aos="fade-up">
+          Гўзал кечамизда сизни кўришликдан мамнун бўламиз!
+        </p>
 
-                <h1 class="pl-10 wedding-font text-6xl text-white text-shadow" data-aos="fade-right">Mardanbek</h1>
-                <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
-                <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
+        <h3 class="text-2xl text-white italic wedding-font text-shadow mt-8" data-aos="zoom-in">
+          16 Сентябр 2025<br />
+          <span>18:00</span>
+        </h3>
+      </div>
 
-                <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
-                    <button onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})"
-                            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
-                            data-aos="fade-up">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
+      <!-- Location -->
+      <div class="mt-12 text-center text-white text-sm">
+        <p data-aos="fade-up">Манзил: «VERSAL» ресторани</p>
+        <p class="mt-1" data-aos="fade-up">Стол №____</p>
+        <a href="#" class="block mt-4 underline italic" data-aos="zoom-in">Манзилни кўриш</a>
+      </div>
 
-            <!-- Divider -->
-            <div class="flex flex-col items-center justify-between pt-16 pb-20">
-                <div class="relative mx-auto w-[90%] aspect-[3/1]" data-aos="flip-up">
-                    <img src="images/line.png" alt="line" class="absolute inset-0 w-full h-full object-cover" />
-                </div>
-            </div>
-
-            <!-- Details Section -->
-            <div id="details" class="relative pt-16">
-                <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
-                <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
-
-                <h2 class="text-4xl text-center text-white wedding-font text-shadow" data-aos="flip-up">Assalomu alaykum</h2>
-                <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
-                    Ҳурматли қадрдонлар! Сизни никоҳ тўйимиз муносабати билан бўлиб ўтадиган «Висол оқшоми» кечасининг азиз меҳмони бўлишингизга таклиф этамиз.
-                </p>
-                <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
-                    Гўзал кечамизда сизни кўришликдан мамнун бўламиз!
-                </p>
-
-                <div class="my-7 w-3/6 mx-auto flex items-center" data-aos="zoom-in">
-                    <span class="w-2 h-2 rounded-full border border-white"></span>
-                    <div class="w-full h-px bg-white"></div>
-                    <span class="w-2 h-2 rounded-full border border-white"></span>
-                </div>
-
-                <h3 class="text-center text-3xl text-white italic wedding-font text-shadow" data-aos="zoom-in">
-                    <span>16</span>
-                    <span class="mx-1">Сентябр</span>
-                    <span>2025</span>
-                    <br />
-                    <span class="flex justify-center items-center gap-2 inline-flex">
-                        <span>18</span>
-                        <span class="flex flex-col justify-center items-center gap-[2px]">
-                            <span class="w-1 h-1 rounded-full bg-white"></span>
-                            <span class="w-1 h-1 rounded-full bg-white"></span>
-                        </span>
-                        <span>00</span>
-                    </span>
-                </h3>
-            </div>
-
-            <!-- Location -->
-            <div class="mt-20 text-center">
-                <p class="px-8 mt-5 text-white italic text-shadow" data-aos="fade-up">Манзил: «VERSAL» ресторани</p>
-                <p class="px-8 mt-2 text-white italic text-sm text-shadow" data-aos="fade-up">Стол №____</p>
-
-                <a href="#" class="flex items-center justify-center gap-2 my-8" data-aos="zoom-in">
-                    <p class="text-white underline italic text-shadow">Манзилни ко'rish</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2">
-                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-                        <circle cx="12" cy="10" r="3" />
-                    </svg>
-                </a>
-
-                <!-- Countdown -->
-                <div class="text-center mt-4 pb-3" data-aos="fade-up">
-                    <h2 class="text-xl text-white mb-4 font-medium wedding-font text-shadow">To'ygacha qolgan vaqt</h2>
-                    <div class="flex justify-center space-x-4 text-white text-3xl font-bold text-shadow">
-                        <span id="days">0</span><span>:</span>
-                        <span id="hours">0</span><span>:</span>
-                        <span id="minutes">0</span><span>:</span>
-                        <span id="seconds">0</span>
-                    </div>
-                    <div class="flex justify-center space-x-4 text-sm text-white mt-1 text-shadow">
-                        <span>Kun</span><span>Soat</span><span>Daqiqa</span><span>Soniya</span>
-                    </div>
-                </div>
-
-                <!-- Credit -->
-                <a href="https://t.me/sd_zuc" target="_blank" class="block mt-20 text-right text-sm text-white italic pr-2 underline text-shadow">by Abdullaev</a>
-            </div>
+      <!-- Countdown -->
+      <div class="text-center mt-10 pb-3 text-white" data-aos="fade-up">
+        <h2 class="text-lg mb-2 wedding-font">To'ygacha qolgan vaqt</h2>
+        <div class="flex justify-center space-x-2 text-2xl font-bold">
+          <span id="days">0</span><span>:</span>
+          <span id="hours">0</span><span>:</span>
+          <span id="minutes">0</span><span>:</span>
+          <span id="seconds">0</span>
         </div>
-    </main>
+        <div class="flex justify-center space-x-4 text-xs mt-1">
+          <span>Kun</span><span>Soat</span><span>Daqiqa</span><span>Soniya</span>
+        </div>
+      </div>
 
-    <!-- Scripts -->
-    <script>
-        AOS.init({ duration: 1500 });
+      <!-- Credit -->
+      <a href="https://t.me/sd_zuc" target="_blank" class="block mt-10 text-right text-xs text-white italic underline pr-2">by Abdullaev</a>
+    </div>
+  </main>
 
-        function updateCountdown() {
-            const weddingDate = new Date("2025-09-16T18:00:00");
-            const now = new Date();
-            const diff = weddingDate - now;
+  <script>
+    AOS.init({ duration: 1200 });
 
-            if (diff <= 0) {
-                document.getElementById("days").textContent = 0;
-                document.getElementById("hours").textContent = 0;
-                document.getElementById("minutes").textContent = 0;
-                document.getElementById("seconds").textContent = 0;
-                return;
-            }
+    function updateCountdown() {
+      const weddingDate = new Date("2025-09-16T18:00:00");
+      const now = new Date();
+      const diff = weddingDate - now;
 
-            const seconds = Math.floor((diff / 1000) % 60);
-            const minutes = Math.floor((diff / 1000 / 60) % 60);
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      if (diff <= 0) return;
 
-            document.getElementById("days").textContent = days;
-            document.getElementById("hours").textContent = hours;
-            document.getElementById("minutes").textContent = minutes;
-            document.getElementById("seconds").textContent = seconds;
-        }
+      const seconds = Math.floor((diff / 1000) % 60);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
 
-        // Audio enablement
-        const audio = document.getElementById('bg-music');
-        const enableAudio = () => {
-            audio.muted = false;
-            audio.play().catch(() => { });
-            window.removeEventListener('click', enableAudio);
-            window.removeEventListener('scroll', enableAudio);
-            window.removeEventListener('touchstart', enableAudio);
-        };
-
-        window.addEventListener('click', enableAudio);
-        window.addEventListener('scroll', enableAudio);
-        window.addEventListener('touchstart', enableAudio);
-    </script>
-
+    const audio = document.getElementById('bg-music');
+    const enableAudio = () => {
+      audio.muted = false;
+      audio.play().catch(() => {});
+      window.removeEventListener('click', enableAudio);
+      window.removeEventListener('scroll', enableAudio);
+      window.removeEventListener('touchstart', enableAudio);
+    };
+    window.addEventListener('click', enableAudio);
+    window.addEventListener('scroll', enableAudio);
+    window.addEventListener('touchstart', enableAudio);
+  </script>
 </body>
 </html>
