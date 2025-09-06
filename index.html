@@ -40,11 +40,11 @@
             font-family: 'Great Vibes', cursive;
         }
 
-        /* Flowers mobile-only */
+        /* Flowers */
         .flower-left,
         .flower-right {
-            width: 180px;        /* bigger size */
-            max-width: 45%;      /* responsive fit */
+            width: 180px;
+            max-width: 45%;
             position: absolute;
             z-index: 1;
         }
@@ -52,13 +52,44 @@
         .flower-left {
             top: -60px;
             left: -70px;
-            transform: rotate(-15deg);
         }
 
         .flower-right {
             bottom: -60px;
             right: -70px;
-            transform: rotate(15deg);
+        }
+
+        /* Custom Animations */
+        @keyframes flowerFadeLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px) rotate(-15deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(-35deg); /* 20% more rotation */
+            }
+        }
+
+        @keyframes flowerFadeRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px) rotate(15deg);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0) rotate(35deg); /* 20% more rotation */
+            }
+        }
+
+        .flower-animate-left {
+            animation: flowerFadeLeft 1.5s ease forwards;
+        }
+
+        .flower-animate-right {
+            animation: flowerFadeRight 1.5s ease forwards;
         }
 
         /* Keep content above flowers */
@@ -91,8 +122,8 @@
 
             <!-- Couple Section -->
             <div class="relative py-5 space-y-5 text-shadow">
-                <img src="images/leftflower-removebg-preview.png" class="flower-left" alt="flower" data-aos="fade-left" />
-                <img src="images/rightflower-removebg-preview.png" class="flower-right" alt="flower" data-aos="fade-right" />
+                <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
 
                 <h1 class="pl-10 wedding-font text-6xl text-white text-shadow" data-aos="fade-right">Mardanbek</h1>
                 <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
@@ -100,8 +131,8 @@
 
                 <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
                     <button onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})"
-                        class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
-                        data-aos="fade-up">
+                            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+                            data-aos="fade-up">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="m6 9 6 6 6-6" />
                         </svg>
@@ -118,8 +149,8 @@
 
             <!-- Details Section -->
             <div id="details" class="relative pt-16">
-                <img src="images/leftflower-removebg-preview.png" class="flower-left" alt="flower" data-aos="fade-left" />
-                <img src="images/rightflower-removebg-preview.png" class="flower-right" alt="flower" data-aos="fade-right" />
+                <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
 
                 <h2 class="text-4xl text-center text-white wedding-font text-shadow" data-aos="flip-up">Assalomu alaykum</h2>
                 <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
@@ -219,7 +250,7 @@
         const audio = document.getElementById('bg-music');
         const enableAudio = () => {
             audio.muted = false;
-            audio.play().catch(() => {});
+            audio.play().catch(() => { });
             window.removeEventListener('click', enableAudio);
             window.removeEventListener('scroll', enableAudio);
             window.removeEventListener('touchstart', enableAudio);
