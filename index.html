@@ -101,9 +101,99 @@
         position: relative;
         z-index: 2;
     }
+
+    /* Stars container */
+    .stars-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    /* Individual star styling */
+    .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 2s infinite;
+    }
+
+    .star::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 1px;
+        background: white;
+        transform: translate(-50%, -50%);
+    }
+
+    .star::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1px;
+        height: 100%;
+        background: white;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Different star sizes */
+    .star-small {
+        width: 2px;
+        height: 2px;
+    }
+
+    .star-medium {
+        width: 3px;
+        height: 3px;
+    }
+
+    .star-large {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* Twinkling animations with different delays */
+    @keyframes twinkle {
+        0%, 100% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+
+    .star-delay-1 { animation-delay: 0s; }
+    .star-delay-2 { animation-delay: 0.5s; }
+    .star-delay-3 { animation-delay: 1s; }
+    .star-delay-4 { animation-delay: 1.5s; }
+    .star-delay-5 { animation-delay: 2s; }
+    .star-delay-6 { animation-delay: 2.5s; }
+
+    /* Different animation durations for variety */
+    .star-fast { animation-duration: 1.5s; }
+    .star-normal { animation-duration: 2s; }
+    .star-slow { animation-duration: 3s; }
+
+    /* Golden stars for special effect */
+    .star-golden {
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+    }
+
+    .star-golden::before,
+    .star-golden::after {
+        background: #ffd700;
+    }
     </style>
 </head>
 <body>
+
+    <!-- Added stars container for twinkling effect -->
+    <div class="stars-container" id="stars-container"></div>
 
     <!-- Music autoplay -->
     <audio id="bg-music" autoplay muted loop preload="auto">
@@ -265,6 +355,46 @@
         window.addEventListener('click', enableAudio);
         window.addEventListener('scroll', enableAudio);
         window.addEventListener('touchstart', enableAudio);
+
+        // Create twinkling stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const numberOfStars = 50; // Total number of stars
+
+            for (let i = 0; i < numberOfStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                // Random size
+                const sizes = ['star-small', 'star-medium', 'star-large'];
+                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+                star.classList.add(randomSize);
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                const delays = ['star-delay-1', 'star-delay-2', 'star-delay-3', 'star-delay-4', 'star-delay-5', 'star-delay-6'];
+                const randomDelay = delays[Math.floor(Math.random() * delays.length)];
+                star.classList.add(randomDelay);
+                
+                // Random animation speed
+                const speeds = ['star-fast', 'star-normal', 'star-slow'];
+                const randomSpeed = speeds[Math.floor(Math.random() * speeds.length)];
+                star.classList.add(randomSpeed);
+                
+                // Some stars are golden for special effect
+                if (Math.random() < 0.2) { // 20% chance for golden stars
+                    star.classList.add('star-golden');
+                }
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Initialize stars when page loads
+        window.addEventListener('load', createStars);
     </script>
 
 </body>
