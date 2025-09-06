@@ -1,436 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hazal & Syeirazad - Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Open+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mardanbek & Rayyona</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        .wedding-font {
+            font-family: 'Great Vibes', cursive;
         }
+    </style>
 
-        :root {
-            --soft-blue: #A3C1DA;
-            --light-blue: #E8F2F8;
-            --cream: #F9F6F0;
-            --navy: #2C3E50;
-            --gold: #D4AF37;
-            --white: #FFFFFF;
-            --light-gold: rgba(212, 175, 55, 0.1);
-        }
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-            line-height: 1.6;
-            color: var(--navy);
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--cream) 100%);
-            min-height: 100vh;
-        }
+    <!-- AOS (Animate On Scroll) -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    <!-- Custom CSS -->
+    <style>
+    html {
+        scroll-behavior: smooth;
+    }
 
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--gold);
-        }
+    body {
+        background: #1a1a2e; /* deep navy */
+        font-family: 'Playfair Display', serif;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow-x: hidden;
+    }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    /* Outer white frame */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: #ffffff; /* white */
+        z-index: -3;
+    }
 
-        .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--navy);
-            text-decoration: none;
-        }
+    /* Inner navy background */
+    body::after {
+        content: "";
+        position: absolute;
+        top: 15px; left: 15px; right: 15px; bottom: 15px;
+        background: #1a1a2e;
+        border-radius: 18px;
+        box-shadow: 0 0 25px rgba(0,0,0,0.5);
+        z-index: -2;
+    }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
+    .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
 
-        .nav-links a {
-            text-decoration: none;
-            color: var(--navy);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+    /* Flowers */
+    .flower-left,
+    .flower-right {
+        width: 180px; 
+        max-width: 45%; 
+        position: absolute;
+        z-index: 0; /* behind text */
+    }
+    
+    .flower-left {
+        top: -60px;
+        left: -70px;
+    }
+    
+    .flower-right {
+        bottom: -60px;
+        right: -70px;
+    }
 
-        .nav-links a:hover {
-            color: var(--gold);
-        }
+    /* Flower animations */
+    @keyframes flowerFadeLeft {
+        from { opacity: 0; transform: translateX(-50px) rotate(15deg); }
+        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+    }
+    @keyframes flowerFadeRight {
+        from { opacity: 0; transform: translateX(50px) rotate(15deg); }
+        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+    }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--light-blue) 0%, var(--soft-blue) 50%, var(--cream) 100%);
-        }
+    .flower-animate-left {
+        animation: flowerFadeLeft 1.5s ease forwards;
+    }
+    .flower-animate-right {
+        animation: flowerFadeRight 1.5s ease forwards;
+    }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23D4AF37' fill-opacity='0.1'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
-            animation: float 20s ease-in-out infinite;
-            opacity: 0.3;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        .floral-decoration {
-            position: absolute;
-            pointer-events: none;
-        }
-
-        .floral-top-left {
-            top: 10%;
-            left: 5%;
-            width: 200px;
-            height: 200px;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23A3C1DA' opacity='0.6'%3E%3Cpath d='M50 100c0-27.614 22.386-50 50-50s50 22.386 50 50-22.386 50-50 50-50-22.386-50-50z'/%3E%3Cpath d='M30 80c0-16.569 13.431-30 30-30s30 13.431 30 30-13.431 30-30 30-30-13.431-30-30z' fill='%23D4AF37' opacity='0.4'/%3E%3C/g%3E%3C/svg%3E") no-repeat center;
-            background-size: contain;
-        }
-
-        .floral-bottom-right {
-            bottom: 10%;
-            right: 5%;
-            width: 250px;
-            height: 250px;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23A3C1DA' opacity='0.5'%3E%3Cpath d='M125 50c41.421 0 75 33.579 75 75s-33.579 75-75 75-75-33.579-75-75 33.579-75 75-75z'/%3E%3Cpath d='M125 75c27.614 0 50 22.386 50 50s-22.386 50-50 50-50-22.386-50-50 22.386-50 50-50z' fill='%23D4AF37' opacity='0.3'/%3E%3C/g%3E%3C/svg%3E") no-repeat center;
-            background-size: contain;
-            transform: rotate(45deg);
-        }
-
-        .invitation-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 3rem;
-            text-align: center;
-            box-shadow: 0 20px 40px rgba(44, 62, 80, 0.1);
-            border: 2px solid var(--gold);
-            position: relative;
-            max-width: 600px;
-            margin: 0 20px;
-        }
-
-        .invitation-card::before {
-            content: '';
-            position: absolute;
-            top: -1px;
-            left: -1px;
-            right: -1px;
-            bottom: -1px;
-            background: linear-gradient(45deg, var(--gold), var(--soft-blue), var(--gold));
-            border-radius: 20px;
-            z-index: -1;
-            opacity: 0.3;
-        }
-
-        .invitation-header {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.9rem;
-            font-weight: 300;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--navy);
-            margin-bottom: 1rem;
-        }
-
-        .couple-names {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: var(--navy);
-            margin: 1rem 0;
-            line-height: 1.2;
-        }
-
-        .couple-names .ampersand {
-            font-size: 2.5rem;
-            color: var(--gold);
-            margin: 0 0.5rem;
-        }
-
-        .invitation-text {
-            font-size: 1.1rem;
-            color: var(--navy);
-            margin: 2rem 0;
-            font-weight: 400;
-        }
-
-        .wedding-details {
-            display: flex;
-            justify-content: space-around;
-            margin: 2rem 0;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .detail-item {
-            text-align: center;
-            flex: 1;
-            min-width: 150px;
-        }
-
-        .detail-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 0.5rem;
-            color: white;
-            font-size: 1.2rem;
-        }
-
-        .detail-title {
-            font-weight: 600;
-            color: var(--navy);
-            margin-bottom: 0.25rem;
-        }
-
-        .detail-info {
-            font-size: 0.9rem;
-            color: var(--navy);
-            opacity: 0.8;
-        }
-
-        .rsvp-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--gold);
-        }
-
-        .rsvp-text {
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            color: var(--navy);
-        }
-
-        .rsvp-button {
-            background: linear-gradient(135deg, var(--gold), #B8941F);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-        }
-
-        .rsvp-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .couple-names {
-                font-size: 2.5rem;
-            }
-
-            .invitation-card {
-                padding: 2rem;
-                margin: 0 10px;
-            }
-
-            .wedding-details {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .floral-top-left,
-            .floral-bottom-right {
-                display: none;
-            }
-        }
-
-        /* Additional Floral Elements */
-        .floating-petals {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-        }
-
-        .petal {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background: var(--soft-blue);
-            border-radius: 50%;
-            opacity: 0.6;
-            animation: fall linear infinite;
-        }
-
-        .petal:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; }
-        .petal:nth-child(2) { left: 20%; animation-duration: 10s; animation-delay: 2s; }
-        .petal:nth-child(3) { left: 30%; animation-duration: 12s; animation-delay: 4s; }
-        .petal:nth-child(4) { left: 40%; animation-duration: 9s; animation-delay: 1s; }
-        .petal:nth-child(5) { left: 50%; animation-duration: 11s; animation-delay: 3s; }
-        .petal:nth-child(6) { left: 60%; animation-duration: 8s; animation-delay: 5s; }
-        .petal:nth-child(7) { left: 70%; animation-duration: 10s; animation-delay: 2s; }
-        .petal:nth-child(8) { left: 80%; animation-duration: 12s; animation-delay: 4s; }
-        .petal:nth-child(9) { left: 90%; animation-duration: 9s; animation-delay: 1s; }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-100vh) rotate(0deg);
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
+    /* Content always above */
+    .content-layer {
+        position: relative;
+        z-index: 2;
+    }
     </style>
 </head>
 <body>
-    <header>
-        <nav class="container">
-            <a href="#" class="logo">H & S</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#details">Details</a></li>
-                <li><a href="#rsvp">RSVP</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="floating-petals">
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
-                <div class="petal"></div>
+    <!-- Music autoplay -->
+    <audio id="bg-music" autoplay muted loop preload="auto">
+        <source src="wedding (online-audio-converter.com).mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Content -->
+    <main class="max-w-full w-full p-2 overflow-x-hidden mx-auto content-layer min-h-screen">
+        <div class="flex flex-col gap-5">
+
+            <nav class="flex items-center justify-between p-4 px-6 mb-20" data-aos="fade-down">
+                <div class="w-24 h-36 border-2 border-white rounded-full flex flex-col items-center justify-center">
+                    <span class="text-white text-[36px] wedding-font leading-none -mb-1 -ml-6 text-shadow">M</span>
+                    <span class="text-white text-[42px] wedding-font leading-none -mt-1 text-shadow">R</span>
+                </div>
+                <div class="pr-4 text-5xl text-white text-shadow wedding-font">
+                    Taklifnoma
+                </div>
+            </nav>
+
+            <!-- Couple Section -->
+            <div class="relative py-5 space-y-5 text-shadow">
+                <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
+
+                <h1 class="pl-10 wedding-font text-6xl text-white text-shadow" data-aos="fade-right">Mardanbek</h1>
+                <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
+                <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
+
+                <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
+                    <button onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})"
+                            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+                            data-aos="fade-up">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </button>
+                </div>
             </div>
-            
-            <div class="floral-decoration floral-top-left"></div>
-            <div class="floral-decoration floral-bottom-right"></div>
-            
-            <div class="invitation-card">
-                <div class="invitation-header">Together with their families</div>
-                
-                <h1 class="couple-names">
-                    Hazal<span class="ampersand">&</span>Syeirazad
-                </h1>
-                
-                <p class="invitation-text">
-                    invite you to their wedding celebration
+
+            <!-- Divider -->
+            <div class="flex flex-col items-center justify-between pt-16 pb-20">
+                <div class="relative mx-auto w-[90%] aspect-[3/1]" data-aos="flip-up">
+                    <img src="images/line.png" alt="line" class="absolute inset-0 w-full h-full object-cover" />
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <div id="details" class="relative pt-16">
+                <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
+
+                <h2 class="text-4xl text-center text-white wedding-font text-shadow" data-aos="flip-up">Assalomu alaykum</h2>
+                <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
+                    Ҳурматли қадрдонлар! Сизни никоҳ тўйимиз муносабати билан бўлиб ўтадиган «Висол оқшоми» кечасининг азиз меҳмони бўлишингизга таклиф этамиз.
                 </p>
-                
-                <div class="wedding-details">
-                    <div class="detail-item">
-                        <div class="detail-icon">📅</div>
-                        <div class="detail-title">Date</div>
-                        <div class="detail-info">Friday, Oct 2024<br>6:00 PM</div>
-                    </div>
-                    <div class="detail-item">
-                        <div class="detail-icon">📍</div>
-                        <div class="detail-title">Venue</div>
-                        <div class="detail-info">Al-Etihad Hotel<br>Amman, Jordan</div>
-                    </div>
+                <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
+                    Гўзал кечамизда сизни кўришликдан мамнун бўламиз!
+                </p>
+
+                <div class="my-7 w-3/6 mx-auto flex items-center" data-aos="zoom-in">
+                    <span class="w-2 h-2 rounded-full border border-white"></span>
+                    <div class="w-full h-px bg-white"></div>
+                    <span class="w-2 h-2 rounded-full border border-white"></span>
                 </div>
-                
-                <div class="rsvp-section">
-                    <p class="rsvp-text">Please RSVP online at</p>
-                    <p class="rsvp-text" style="font-weight: 600;">hazalandsyeirazad.com</p>
-                    <p class="rsvp-text" style="font-size: 0.8rem;">by Oct 15, 2024</p>
-                    
-                    <a href="#rsvp" class="rsvp-button">RSVP Now</a>
-                </div>
+
+                <h3 class="text-center text-3xl text-white italic wedding-font text-shadow" data-aos="zoom-in">
+                    <span>16</span>
+                    <span class="mx-1">Сентябр</span>
+                    <span>2025</span>
+                    <br />
+                    <span class="flex justify-center items-center gap-2 inline-flex">
+                        <span>18</span>
+                        <span class="flex flex-col justify-center items-center gap-[2px]">
+                            <span class="w-1 h-1 rounded-full bg-white"></span>
+                            <span class="w-1 h-1 rounded-full bg-white"></span>
+                        </span>
+                        <span>00</span>
+                    </span>
+                </h3>
             </div>
-        </section>
+
+            <!-- Location -->
+            <div class="mt-20 text-center">
+                <p class="px-8 mt-5 text-white italic text-shadow" data-aos="fade-up">Манзил: «VERSAL» ресторани</p>
+                
+
+                <a href="https://www.google.com/maps/place/%D0%92%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C/@41.3282599,69.2222692,701m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38ae8b8efc7297ff:0x2b25a59e558906f4!8m2!3d41.3282599!4d69.2248441!16s%2Fg%2F11b7kjrljy?entry=ttu&g_ep=EgoyMDI1MDkwMy4wIKXMDSoASAFQAw%3D%3D" class="flex items-center justify-center gap-2 my-8" data-aos="zoom-in">
+                    <p class="text-white underline italic text-shadow">Манзилни ko'rish</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2">
+                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                </a>
+
+                <!-- Countdown (centered) -->
+                <div class="text-center mt-10 pb-3" data-aos="fade-up">
+                    <h2 class="text-2xl text-white mb-4 font-medium wedding-font text-shadow">
+                        To'ygacha qolgan vaqt
+                    </h2>
+                    <div class="flex justify-center space-x-4 text-white text-3xl font-bold text-shadow">
+                        <span id="days">0</span><span>:</span>
+                        <span id="hours">0</span><span>:</span>
+                        <span id="minutes">0</span><span>:</span>
+                        <span id="seconds">0</span>
+                    </div>
+                    <div class="flex justify-center space-x-6 text-sm text-white mt-2 text-shadow">
+                        <span>Kun</span><span>Soat</span><span>Daqiqa</span><span>Soniya</span>
+                    </div>
+                </div>
+
+                <!-- Credit -->
+                <a href="https://t.me/sd_zuc" target="_blank" class="block mt-20 text-right text-sm text-white italic pr-2 underline text-shadow">by Abdullaev</a>
+            </div>
+        </div>
     </main>
 
+    <!-- Scripts -->
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
+        AOS.init({ duration: 1500 });
 
-        // Add subtle parallax effect to floral decorations
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const parallax = document.querySelectorAll('.floral-decoration');
-            const speed = 0.5;
+        function updateCountdown() {
+            const weddingDate = new Date("2025-09-16T18:00:00");
+            const now = new Date();
+            const diff = weddingDate - now;
 
-            parallax.forEach(element => {
-                const yPos = -(scrolled * speed);
-                element.style.transform = `translateY(${yPos}px)`;
-            });
-        });
+            if (diff <= 0) {
+                document.getElementById("days").textContent = 0;
+                document.getElementById("hours").textContent = 0;
+                document.getElementById("minutes").textContent = 0;
+                document.getElementById("seconds").textContent = 0;
+                return;
+            }
 
-        // Add entrance animation to invitation card
-        window.addEventListener('load', () => {
-            const card = document.querySelector('.invitation-card');
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'all 1s ease-out';
-            
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, 500);
-        });
+            const seconds = Math.floor((diff / 1000) % 60);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Audio enablement
+        const audio = document.getElementById('bg-music');
+        const enableAudio = () => {
+            audio.muted = false;
+            audio.play().catch(() => { });
+            window.removeEventListener('click', enableAudio);
+            window.removeEventListener('scroll', enableAudio);
+            window.removeEventListener('touchstart', enableAudio);
+        };
+
+        window.addEventListener('click', enableAudio);
+        window.addEventListener('scroll', enableAudio);
+        window.addEventListener('touchstart', enableAudio);
     </script>
+
 </body>
 </html>
