@@ -26,28 +26,13 @@
         }
 
         body {
-            /* Applied single background image to entire page */
-            background-image: url('images/secondBack.png');
-            background-size: cover;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
+            /* Removed background image and applied solid dark background */
+            background: #1a1a2e;
             font-family: 'Playfair Display', serif;
             min-height: 100vh;
         }
 
-            /* Added single overlay for better text contrast */
-            body::before {
-                content: '';
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
-                z-index: 1;
-                pointer-events: none;
-            }
+        /* Removed overlay since there's no background image */
 
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -63,55 +48,55 @@
             z-index: 2;
         }
 
-        /* Added responsive flower sizing for mobile devices */
+        /* Improved mobile responsive flower sizing and positioning */
         .flower-left, .flower-right {
-            width: 250px;
+            width: 200px;
         }
 
         /* Mobile responsive flower sizes */
         @media (max-width: 640px) {
             .flower-left, .flower-right {
-                width: 150px !important;
+                width: 120px !important;
+            }
+
+            .flower-left {
+                left: -60px !important;
+            }
+
+            .flower-right {
+                right: -60px !important;
             }
         }
 
         @media (max-width: 480px) {
-            .flower-left, .flower-right {
-                width: 120px !important;
-            }
-        }
-
-        @media (max-width: 360px) {
             .flower-left, .flower-right {
                 width: 100px !important;
             }
-        }
 
-        /* Added mobile-specific background sizing */
-        @media (max-width: 768px) {
-            body {
-                background-size: cover;
-                background-position: center center;
-                background-attachment: scroll;
-                background-color: #1a1a2e; /* Fallback color for areas not covered by image */
+            .flower-left {
+                left: -50px !important;
             }
-        }
 
-        @media (max-width: 480px) {
-            body {
-                background-size: cover;
-                background-position: center center;
-                background-attachment: scroll;
+            .flower-right {
+                right: -50px !important;
             }
         }
 
         @media (max-width: 360px) {
-            body {
-                background-size: cover;
-                background-position: center center;
-                background-attachment: scroll;
+            .flower-left, .flower-right {
+                width: 80px !important;
+            }
+
+            .flower-left {
+                left: -40px !important;
+            }
+
+            .flower-right {
+                right: -40px !important;
             }
         }
+
+        /* Removed mobile-specific background sizing since background image is removed */
     </style>
 </head>
 <body>
@@ -144,9 +129,9 @@
 
             <!-- Couple Section -->
             <div class="relative py-5 space-y-5 text-shadow">
-                <!-- Added responsive flower classes and removed fixed width -->
-                <img src="images/leftflower-removebg-preview.png" class="flower-left absolute -top-1/2 -left-24 rotate-[-20deg]" alt="flower" data-aos="fade-left" />
-                <img src="images/rightflower-removebg-preview.png" class="flower-right absolute -bottom-1/2 -right-24 rotate-[20deg]" alt="flower" data-aos="fade-right" />
+                <!-- Updated flower rotation to 15 degrees and improved mobile positioning -->
+                <img src="images/leftflower-removebg-preview.png" class="flower-left absolute -top-1/2 -left-24 rotate-[-15deg]" alt="flower" data-aos="fade-left" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right absolute -bottom-1/2 -right-24 rotate-[15deg]" alt="flower" data-aos="fade-right" />
                 <!-- Updated names to Mardanbek & Rayyona with white color -->
                 <h1 class="pl-10 wedding-font text-7xl sm:text-6xl text-white text-shadow" data-aos="fade-right">Mardanbek</h1>
                 <h1 class="text-center wedding-font text-4xl sm:text-5xl text-white text-shadow" data-aos="zoom-in">&</h1>
@@ -175,9 +160,9 @@
 
             <!-- Details Section -->
             <div id="details" class="relative pt-16">
-                <!-- Added responsive flower classes and removed fixed width -->
-                <img src="images/leftflower-removebg-preview.png" class="flower-left absolute -top-1/2 -left-24 rotate-[-20deg]" alt="flower" data-aos="fade-left" />
-                <img src="images/rightflower-removebg-preview.png" class="flower-right absolute -bottom-1/2 -right-24 rotate-[20deg]" alt="flower" data-aos="fade-right" />
+                <!-- Updated flower rotation to 15 degrees and improved mobile positioning -->
+                <img src="images/leftflower-removebg-preview.png" class="flower-left absolute -top-1/2 -left-24 rotate-[-15deg]" alt="flower" data-aos="fade-left" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right absolute -bottom-1/2 -right-24 rotate-[15deg]" alt="flower" data-aos="fade-right" />
 
                 <!-- Updated text content and colors to white -->
                 <h2 class="text-4xl text-center text-white wedding-font text-shadow" data-aos="flip-up">Assalomu alaykum</h2>
