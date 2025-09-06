@@ -20,19 +20,17 @@
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+    <!-- Mobile-optimized only CSS -->
     <style>
         html {
             scroll-behavior: smooth;
         }
 
         body {
-            /* Removed background image and applied solid dark background */
             background: #1a1a2e;
             font-family: 'Playfair Display', serif;
             min-height: 100vh;
         }
-
-        /* Removed overlay since there's no background image */
 
         .text-shadow {
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
@@ -42,61 +40,32 @@
             font-family: 'Great Vibes', cursive;
         }
 
-        /* Ensure content appears above overlay */
+        /* Flowers mobile-only */
+        .flower-left,
+        .flower-right {
+            width: 180px;        /* bigger size */
+            max-width: 45%;      /* responsive fit */
+            position: absolute;
+            z-index: 1;
+        }
+
+        .flower-left {
+            top: -60px;
+            left: -70px;
+            transform: rotate(-15deg);
+        }
+
+        .flower-right {
+            bottom: -60px;
+            right: -70px;
+            transform: rotate(15deg);
+        }
+
+        /* Keep content above flowers */
         .content-layer {
             position: relative;
             z-index: 2;
         }
-
-        /* Improved mobile responsive flower sizing and positioning */
-        .flower-left, .flower-right {
-            width: 200px;
-        }
-
-        /* Mobile responsive flower sizes */
-        @media (max-width: 640px) {
-            .flower-left, .flower-right {
-                width: 120px !important;
-            }
-
-            .flower-left {
-                left: -60px !important;
-            }
-
-            .flower-right {
-                right: -60px !important;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .flower-left, .flower-right {
-                width: 100px !important;
-            }
-
-            .flower-left {
-                left: -50px !important;
-            }
-
-            .flower-right {
-                right: -50px !important;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .flower-left, .flower-right {
-                width: 80px !important;
-            }
-
-            .flower-left {
-                left: -40px !important;
-            }
-
-            .flower-right {
-                right: -40px !important;
-            }
-        }
-
-        /* Removed mobile-specific background sizing since background image is removed */
     </style>
 </head>
 <body>
@@ -106,65 +75,52 @@
         <source src="wedding (online-audio-converter.com).mp3" type="audio/mpeg" />
     </audio>
 
-    <!-- Combined all content into single main container -->
-    <main class="max-w-[450px] w-full p-2 overflow-x-hidden mx-auto content-layer min-h-screen">
+    <!-- Content -->
+    <main class="max-w-full w-full p-2 overflow-x-hidden mx-auto content-layer min-h-screen">
         <div class="flex flex-col gap-5">
 
-            <nav class="flex items-center justify-between p-4 px-6 sm:px-8 mb-20" data-aos="fade-down">
-                <!-- Updated monogram for Mardanbek & Rayyona -->
-                <div class="w-24 h-36 sm:w-28 sm:h-40 border-2 border-white rounded-full flex flex-col items-center justify-center">
-                    <span class="text-white text-[36px] sm:text-[44px] wedding-font leading-none -mb-1 -ml-6 text-shadow">
-                        M
-                    </span>
-                    <span class="text-white text-[42px] sm:text-[50px] wedding-font leading-none -mt-1 text-shadow">
-                        R
-                    </span>
+            <nav class="flex items-center justify-between p-4 px-6 mb-20" data-aos="fade-down">
+                <div class="w-24 h-36 border-2 border-white rounded-full flex flex-col items-center justify-center">
+                    <span class="text-white text-[36px] wedding-font leading-none -mb-1 -ml-6 text-shadow">M</span>
+                    <span class="text-white text-[42px] wedding-font leading-none -mt-1 text-shadow">R</span>
                 </div>
-
-                <!-- Updated title color to white -->
-                <div class="pr-4 text-5xl sm:text-10xl text-white text-shadow wedding-font">
+                <div class="pr-4 text-5xl text-white text-shadow wedding-font">
                     Taklifnoma
                 </div>
             </nav>
 
             <!-- Couple Section -->
             <div class="relative py-5 space-y-5 text-shadow">
-                <!-- Updated flower rotation to 15 degrees and improved mobile positioning -->
-                <img src="images/leftflower-removebg-preview.png" class="flower-left absolute -top-1/2 -left-24 rotate-[-15deg]" alt="flower" data-aos="fade-left" />
-                <img src="images/rightflower-removebg-preview.png" class="flower-right absolute -bottom-1/2 -right-24 rotate-[15deg]" alt="flower" data-aos="fade-right" />
-                <!-- Updated names to Mardanbek & Rayyona with white color -->
-                <h1 class="pl-10 wedding-font text-7xl sm:text-6xl text-white text-shadow" data-aos="fade-right">Mardanbek</h1>
-                <h1 class="text-center wedding-font text-4xl sm:text-5xl text-white text-shadow" data-aos="zoom-in">&</h1>
-                <h1 class="pr-10 flex justify-end wedding-font text-7xl sm:text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
+                <img src="images/leftflower-removebg-preview.png" class="flower-left" alt="flower" data-aos="fade-left" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right" alt="flower" data-aos="fade-right" />
 
-                <!-- Added swipe down button to first page section, positioned at bottom -->
+                <h1 class="pl-10 wedding-font text-6xl text-white text-shadow" data-aos="fade-right">Mardanbek</h1>
+                <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
+                <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
+
                 <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
                     <button onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})"
-                            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
-                            data-aos="fade-up">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-chevron-down">
+                        class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+                        data-aos="fade-up">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="m6 9 6 6 6-6" />
                         </svg>
                     </button>
                 </div>
             </div>
 
-            <!-- Line + Scroll Button -->
+            <!-- Divider -->
             <div class="flex flex-col items-center justify-between pt-16 pb-20">
                 <div class="relative mx-auto w-[90%] aspect-[3/1]" data-aos="flip-up">
                     <img src="images/line.png" alt="line" class="absolute inset-0 w-full h-full object-cover" />
                 </div>
-
-                <!-- Removed duplicate swipe button from line section -->
             </div>
 
             <!-- Details Section -->
             <div id="details" class="relative pt-16">
-                <!-- Updated flower rotation to 15 degrees and improved mobile positioning -->
-                <img src="images/leftflower-removebg-preview.png" class="flower-left absolute -top-1/2 -left-24 rotate-[-15deg]" alt="flower" data-aos="fade-left" />
-                <img src="images/rightflower-removebg-preview.png" class="flower-right absolute -bottom-1/2 -right-24 rotate-[15deg]" alt="flower" data-aos="fade-right" />
+                <img src="images/leftflower-removebg-preview.png" class="flower-left" alt="flower" data-aos="fade-left" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right" alt="flower" data-aos="fade-right" />
 
-                <!-- Updated text content and colors to white -->
                 <h2 class="text-4xl text-center text-white wedding-font text-shadow" data-aos="flip-up">Assalomu alaykum</h2>
                 <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
                     Ҳурматли қадрдонлар! Сизни никоҳ тўйимиз муносабати билан бўлиб ўтадиган «Висол оқшоми» кечасининг азиз меҳмони бўлишингизга таклиф этамиз.
@@ -174,13 +130,11 @@
                 </p>
 
                 <div class="my-7 w-3/6 mx-auto flex items-center" data-aos="zoom-in">
-                    <!-- Updated decorative elements to white -->
                     <span class="w-2 h-2 rounded-full border border-white"></span>
                     <div class="w-full h-px bg-white"></div>
                     <span class="w-2 h-2 rounded-full border border-white"></span>
                 </div>
 
-                <!-- Updated date to match info.png: 16 September 2025, 18:00 -->
                 <h3 class="text-center text-3xl text-white italic wedding-font text-shadow" data-aos="zoom-in">
                     <span>16</span>
                     <span class="mx-1">Сентябр</span>
@@ -199,18 +153,12 @@
 
             <!-- Location -->
             <div class="mt-20 text-center">
-                <!-- Updated venue to match info.png: VERSAL restaurant -->
-                <p class="px-8 mt-5 text-white italic text-shadow" data-aos="fade-up">
-                    Манзил: «VERSAL» ресторани
-                </p>
-                <p class="px-8 mt-2 text-white italic text-sm text-shadow" data-aos="fade-up">
-                    Стол №____
-                </p>
+                <p class="px-8 mt-5 text-white italic text-shadow" data-aos="fade-up">Манзил: «VERSAL» ресторани</p>
+                <p class="px-8 mt-2 text-white italic text-sm text-shadow" data-aos="fade-up">Стол №____</p>
 
                 <a href="#" class="flex items-center justify-center gap-2 my-8" data-aos="zoom-in">
-                    <!-- Updated link color to white -->
                     <p class="text-white underline italic text-shadow">Манзилни ко'rish</p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2" class="lucide lucide-map-pin">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2">
                         <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
                         <circle cx="12" cy="10" r="3" />
                     </svg>
@@ -218,7 +166,6 @@
 
                 <!-- Countdown -->
                 <div class="text-center mt-4 pb-3" data-aos="fade-up">
-                    <!-- Updated countdown colors to white -->
                     <h2 class="text-xl text-white mb-4 font-medium wedding-font text-shadow">To'ygacha qolgan vaqt</h2>
                     <div class="flex justify-center space-x-4 text-white text-3xl font-bold text-shadow">
                         <span id="days">0</span><span>:</span>
@@ -239,9 +186,7 @@
 
     <!-- Scripts -->
     <script>
-        AOS.init({
-            duration: 1500
-        });
+        AOS.init({ duration: 1500 });
 
         function updateCountdown() {
             const weddingDate = new Date("2025-09-16T18:00:00");
@@ -274,7 +219,7 @@
         const audio = document.getElementById('bg-music');
         const enableAudio = () => {
             audio.muted = false;
-            audio.play().catch(() => { });
+            audio.play().catch(() => {});
             window.removeEventListener('click', enableAudio);
             window.removeEventListener('scroll', enableAudio);
             window.removeEventListener('touchstart', enableAudio);
