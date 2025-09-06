@@ -22,8 +22,12 @@
 
     <!-- Mobile-optimized only CSS -->
     <style>
+    html {
+        scroll-behavior: smooth;
+    }
+
     body {
-        background: #1a1a2e; 
+        background: #1a1a2e; /* deep navy */
         font-family: 'Playfair Display', serif;
         min-height: 100vh;
         margin: 0;
@@ -31,78 +35,73 @@
         position: relative;
     }
 
-    /* Outer azure frame */
+    /* Outer beige frame */
     body::before {
         content: "";
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        background: #F0FFFF; /* soft azure */
+        background: #f5f5dc; /* beige */
         z-index: -2;
     }
 
-    /* Inner navy card */
+    /* Inner navy background with margin (creates border effect) */
     body::after {
         content: "";
         position: fixed;
-        top: 25px; left: 25px;
-        right: 25px; bottom: 25px;
-        background: #1a1a2e;
-        border-radius: 25px;
-        box-shadow: 0 0 50px rgba(0,0,0,0.6);
+        top: 20px; left: 20px;
+        right: 20px; bottom: 20px;
+        background: #1a1a2e; /* navy */
+        border-radius: 20px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.5);
         z-index: -1;
     }
 
-    /* Text shadow */
     .text-shadow {
-        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
     }
 
     .wedding-font {
         font-family: 'Great Vibes', cursive;
     }
 
-    /* Monogram (MR) */
-    .monogram {
-        width: 110px;
-        height: 110px;
-        border-radius: 50%;
-        border: 3px solid transparent;
-        background: linear-gradient(#1a1a2e, #1a1a2e) padding-box,
-                    linear-gradient(135deg, #FFD700, #FFFACD) border-box;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+    /* Flowers */
+    .flower-left,
+    .flower-right {
+        width: 180px; 
+        max-width: 45%; 
+        position: absolute;
+        z-index: 0; /* behind text */
+    }
+    
+    .flower-left {
+        top: -60px;
+        left: -70px;
+    }
+    
+    .flower-right {
+        bottom: -60px;
+        right: -70px;
     }
 
-    .monogram span {
-        font-family: 'Great Vibes', cursive;
-        font-size: 52px;
-        color: #fff;
-        letter-spacing: -3px;
+    /* Flower animations */
+    @keyframes flowerFadeLeft {
+        from { opacity: 0; transform: translateX(-50px) rotate(15deg); }
+        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+    }
+    @keyframes flowerFadeRight {
+        from { opacity: 0; transform: translateX(50px) rotate(15deg); }
+        to { opacity: 1; transform: translateX(0) rotate(35deg); }
     }
 
-    /* Title (Taklifnoma) */
-    .title {
-        font-family: 'Playfair Display', serif;
-        font-size: 42px;
-        color: #fff;
-        font-style: italic;
-        position: relative;
-        text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+    .flower-animate-left {
+        animation: flowerFadeLeft 1.5s ease forwards;
+    }
+    .flower-animate-right {
+        animation: flowerFadeRight 1.5s ease forwards;
     }
 
-    .title::after {
-        content: "";
-        display: block;
-        width: 80%;
-        height: 2px;
-        margin: 8px auto 0;
-        background: linear-gradient(to right, transparent, #FFD700, transparent);
-    }
-
-    /* Content above flowers */
+    /* Content always above */
     .content-layer {
         position: relative;
         z-index: 2;
