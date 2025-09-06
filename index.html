@@ -22,82 +22,92 @@
 
     <!-- Mobile-optimized only CSS -->
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        body {
-            background: #1a1a2e;
-            font-family: 'Playfair Display', serif;
-            min-height: 100vh;
-        }
+    body {
+        background: #1a1a2e; /* deep navy */
+        font-family: 'Playfair Display', serif;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        position: relative;
+    }
 
-        .text-shadow {
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-        }
+    /* Outer beige frame */
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: #f5f5dc; /* beige */
+        z-index: -2;
+    }
 
-        .wedding-font {
-            font-family: 'Great Vibes', cursive;
-        }
+    /* Inner navy background with margin (creates border effect) */
+    body::after {
+        content: "";
+        position: fixed;
+        top: 20px; left: 20px;
+        right: 20px; bottom: 20px;
+        background: #1a1a2e; /* navy */
+        border-radius: 20px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        z-index: -1;
+    }
 
-        /* Flowers */
-        .flower-left,
-        .flower-right {
-            width: 180px;
-            max-width: 45%;
-            position: absolute;
-            z-index: 1;
-        }
+    .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
 
-        .flower-left {
-            top: -60px;
-            left: -70px;
-        }
+    .wedding-font {
+        font-family: 'Great Vibes', cursive;
+    }
 
-        .flower-right {
-            bottom: -60px;
-            right: -70px;
-        }
+    /* Flowers */
+    .flower-left,
+    .flower-right {
+        width: 180px; 
+        max-width: 45%; 
+        position: absolute;
+        z-index: 0; /* behind text */
+    }
+    
+    .flower-left {
+        top: -60px;
+        left: -70px;
+    }
+    
+    .flower-right {
+        bottom: -60px;
+        right: -70px;
+    }
 
-        /* Custom Animations */
-        @keyframes flowerFadeLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px) rotate(-15deg);
-            }
+    /* Flower animations */
+    @keyframes flowerFadeLeft {
+        from { opacity: 0; transform: translateX(-50px) rotate(15deg); }
+        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+    }
+    @keyframes flowerFadeRight {
+        from { opacity: 0; transform: translateX(50px) rotate(15deg); }
+        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+    }
 
-            to {
-                opacity: 1;
-                transform: translateX(0) rotate(-35deg); /* 20% more rotation */
-            }
-        }
+    .flower-animate-left {
+        animation: flowerFadeLeft 1.5s ease forwards;
+    }
+    .flower-animate-right {
+        animation: flowerFadeRight 1.5s ease forwards;
+    }
 
-        @keyframes flowerFadeRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px) rotate(15deg);
-            }
+    /* Content always above */
+    .content-layer {
+        position: relative;
+        z-index: 2;
+    }
+</style>
 
-            to {
-                opacity: 1;
-                transform: translateX(0) rotate(35deg); /* 20% more rotation */
-            }
-        }
-
-        .flower-animate-left {
-            animation: flowerFadeLeft 1.5s ease forwards;
-        }
-
-        .flower-animate-right {
-            animation: flowerFadeRight 1.5s ease forwards;
-        }
-
-        /* Keep content above flowers */
-        .content-layer {
-            position: relative;
-            z-index: 2;
-        }
-    </style>
 </head>
 <body>
 
