@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Shohjahon & Zarinaxon</title>
+    <title>Mardanbek & Rayyona</title>
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
@@ -12,7 +12,6 @@
             font-family: 'Great Vibes', cursive;
         }
     </style>
-
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -27,150 +26,229 @@
         }
 
         body {
-            background-color: #ececec;
+            /* Applied single background image to entire page */
+            background-image: url('C:/Users/Zuc/Desktop/Mardonbek-Rayyona/images/secondBack.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             font-family: 'Playfair Display', serif;
+            min-height: 100vh;
         }
+
+            /* Added single overlay for better text contrast */
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+                z-index: 1;
+                pointer-events: none;
+            }
 
         .text-shadow {
-            text-shadow: 2px 2px 2px #757261;
-        }
-
-        .drop-shadow-img {
-            filter: drop-shadow(0px 20px 20px rgba(59, 22, 66, 0.3));
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
 
         .wedding-font {
             font-family: 'Great Vibes', cursive;
         }
+
+        /* Ensure content appears above overlay */
+        .content-layer {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Added responsive flower sizing for mobile devices */
+        .flower-left, .flower-right {
+            width: 250px;
+        }
+
+        /* Mobile responsive flower sizes */
+        @media (max-width: 640px) {
+            .flower-left, .flower-right {
+                width: 150px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .flower-left, .flower-right {
+                width: 120px !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .flower-left, .flower-right {
+                width: 100px !important;
+            }
+        }
+
+        /* Added mobile-specific background sizing */
+        @media (max-width: 768px) {
+            body {
+                background-size: cover;
+                background-position: center center;
+                background-attachment: scroll;
+                background-color: #1a1a2e; /* Fallback color for areas not covered by image */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                background-size: cover;
+                background-position: center center;
+                background-attachment: scroll;
+            }
+        }
+
+        @media (max-width: 360px) {
+            body {
+                background-size: cover;
+                background-position: center center;
+                background-attachment: scroll;
+            }
+        }
     </style>
 </head>
-<body class="flex justify-center items-center min-h-screen">
+<body>
 
     <!-- Music autoplay -->
     <audio id="bg-music" autoplay muted loop preload="auto">
-    <source src="wedding (online-audio-converter.com).mp3" type="audio/mpeg" />
-</audio>
+        <source src="wedding (online-audio-converter.com).mp3" type="audio/mpeg" />
+    </audio>
 
-
-    <main class="max-w-[450px] w-full p-2 bg-[#ececec] overflow-x-hidden">
-        <div class="h-screen flex flex-col gap-5">
+    <!-- Combined all content into single main container -->
+    <main class="max-w-[450px] w-full p-2 overflow-x-hidden mx-auto content-layer min-h-screen">
+        <div class="flex flex-col gap-5">
 
             <nav class="flex items-center justify-between p-4 px-6 sm:px-8 mb-20" data-aos="fade-down">
-                <!-- Larger Elegant Monogram -->
-                <div class="w-24 h-36 sm:w-28 sm:h-40 border-2 border-[#a9a05c] rounded-full flex flex-col items-center justify-center">
-                    <!-- "Sh" slightly to the left -->
-                    <span class="text-[#a9a05c] text-[36px] sm:text-[44px] wedding-font leading-none -mb-1 -ml-6">
-                        Sh
+                <!-- Updated monogram for Mardanbek & Rayyona -->
+                <div class="w-24 h-36 sm:w-28 sm:h-40 border-2 border-white rounded-full flex flex-col items-center justify-center">
+                    <span class="text-white text-[36px] sm:text-[44px] wedding-font leading-none -mb-1 -ml-6 text-shadow">
+                        M
                     </span>
-                    <span class="text-[#a9a05c] text-[42px] sm:text-[50px] wedding-font leading-none -mt-1">
-                        Z
+                    <span class="text-white text-[42px] sm:text-[50px] wedding-font leading-none -mt-1 text-shadow">
+                        R
                     </span>
                 </div>
 
-                <!-- Title -->
-                <div class="pr-4 text-5xl sm:text-10xl text-[#a9a05c] text-shadow wedding-font">
+                <!-- Updated title color to white -->
+                <div class="pr-4 text-5xl sm:text-10xl text-white text-shadow wedding-font">
                     Taklifnoma
                 </div>
             </nav>
 
-
-
-
-
-
-
-
-
             <!-- Couple Section -->
             <div class="relative py-5 space-y-5 text-shadow">
-                <img src="images/hydrangea.png" class="drop-shadow-img absolute -top-1/2 -right-24 rotate-[-20deg]" width="250" alt="flower" data-aos="fade-left" />
-                <img src="images/hydra.png" class="drop-shadow-img absolute -bottom-1/2 -left-24 rotate-[20deg]" width="250" alt="flower" data-aos="fade-right" />
-                <h1 class="pl-10 wedding-font text-7xl sm:text-6xl  text-blue-600" data-aos="fade-right">Shohjahon</h1>
-                <h1 class="text-center wedding-font text-4xl sm:text-5xl text-blue-600" data-aos="zoom-in">&</h1>
-                <h1 class="pr-10 flex justify-end wedding-font text-7xl sm:text-6xl text-blue-600" data-aos="fade-left">Zarinaxon</h1>
+                <!-- Added responsive flower classes and removed fixed width -->
+                <img src="C:/Users/Zuc/Desktop/Mardonbek-Rayyona/images/leftflower-removebg-preview.png" class="flower-left absolute -top-1/2 -left-24 rotate-[-20deg]" alt="flower" data-aos="fade-left" />
+                <img src="C:/Users/Zuc/Desktop/Mardonbek-Rayyona/images/rightflower-removebg-preview.png" class="flower-right absolute -bottom-1/2 -right-24 rotate-[20deg]" alt="flower" data-aos="fade-right" />
+                <!-- Updated names to Mardanbek & Rayyona with white color -->
+                <h1 class="pl-10 wedding-font text-7xl sm:text-6xl text-white text-shadow" data-aos="fade-right">Mardanbek</h1>
+                <h1 class="text-center wedding-font text-4xl sm:text-5xl text-white text-shadow" data-aos="zoom-in">&</h1>
+                <h1 class="pr-10 flex justify-end wedding-font text-7xl sm:text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
+
+                <!-- Added swipe down button to first page section, positioned at bottom -->
+                <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
+                    <button onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})"
+                            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+                            data-aos="fade-up">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-chevron-down">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
             <!-- Line + Scroll Button -->
-            <div class="flex-1 flex flex-col items-center justify-between pt-16">
+            <div class="flex flex-col items-center justify-between pt-16 pb-20">
                 <div class="relative mx-auto w-[90%] aspect-[3/1]" data-aos="flip-up">
                     <img src="images/line.png" alt="line" class="absolute inset-0 w-full h-full object-cover" />
                 </div>
-                <div class="fixed bottom-5 left-1/2 -translate-x-1/2">
-                    <a id="scrollBtn" href="#details" class="transition-opacity duration-500 text-[#a9a05c] w-10 h-16 rounded-full flex justify-center items-center border border-[#a9a05c] fixed bottom-5 left-1/2 -translate-x-1/2 z-50">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" class="lucide lucide-chevron-down">
-                            <path d="M6 9l6 6 6-6" />
-                        </svg>
-                    </a>
 
+                <!-- Removed duplicate swipe button from line section -->
+            </div>
+
+            <!-- Details Section -->
+            <div id="details" class="relative pt-16">
+                <!-- Added responsive flower classes and removed fixed width -->
+                <img src="C:/Users/Zuc/Desktop/Mardonbek-Rayyona/images/leftflower-removebg-preview.png" class="flower-left absolute -top-1/2 -left-24 rotate-[-20deg]" alt="flower" data-aos="fade-left" />
+                <img src="C:/Users/Zuc/Desktop/Mardonbek-Rayyona/images/rightflower-removebg-preview.png" class="flower-right absolute -bottom-1/2 -right-24 rotate-[20deg]" alt="flower" data-aos="fade-right" />
+
+                <!-- Updated text content and colors to white -->
+                <h2 class="text-4xl text-center text-white wedding-font text-shadow" data-aos="flip-up">Assalomu alaykum</h2>
+                <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
+                    Ҳурматли қадрдонлар! Сизни никоҳ тўйимиз муносабати билан бўлиб ўтадиган «Висол оқшоми» кечасининг азиз меҳмони бўлишингизга таклиф этамиз.
+                </p>
+                <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
+                    Гўзал кечамизда сизни кўришликдан мамнун бўламиз!
+                </p>
+
+                <div class="my-7 w-3/6 mx-auto flex items-center" data-aos="zoom-in">
+                    <!-- Updated decorative elements to white -->
+                    <span class="w-2 h-2 rounded-full border border-white"></span>
+                    <div class="w-full h-px bg-white"></div>
+                    <span class="w-2 h-2 rounded-full border border-white"></span>
                 </div>
-            </div>
-        </div>
 
-        <!-- Details Section -->
-        <div id="details" class="relative mt-32">
-            <img src="images/hydrangea.png" class="drop-shadow-img absolute -top-1/2 -right-24 rotate-[-20deg]" width="250" alt="flower" data-aos="fade-left" />
-            <img src="images/hydra.png" class="drop-shadow-img absolute -bottom-1/2 -left-24 rotate-[20deg]" width="250" alt="flower" data-aos="fade-right" />
-
-            <h2 class="text-4xl text-center text-[#a9a05c] wedding-font" data-aos="flip-up">Assalomu alaykum</h2>
-            <p class="px-8 text-center mt-5 text-[#7c7647] italic" data-aos="fade-up">
-                Hurmatli qadrdonlar! Sizlarni aziz farzandlarimiz Shohjahon va Zarinaxonlarning nikoh to‘ylari munosabati bilan 2025-yil 2-sentabr kuni soat 19:00 da bo‘lib o‘tadigan to‘y dasturxonimizga taklif etamiz!
-            </p>
-            <p class="px-8 text-center mt-5 text-[#7c7647] italic" data-aos="fade-up">
-                Hurmat va ehtirom ila, Turdiqulovlar oilasi
-            </p>
-
-            <div class="my-7 w-3/6 mx-auto flex items-center" data-aos="zoom-in">
-                <span class="w-2 h-2 rounded-full border border-[#a9a05c]"></span>
-                <div class="w-full h-px bg-[#a9a05c]"></div>
-                <span class="w-2 h-2 rounded-full border border-[#a9a05c]"></span>
-            </div>
-
-            <h3 class="text-center text-3xl text-[#a9a05c] italic wedding-font" data-aos="zoom-in">
-                <span>2</span>
-                <span class="mx-1">Sentabr</span>
-                <span>2025</span>
-                <br />
-                <span class="flex justify-center items-center gap-2 inline-flex">
-                    <span>19</span>
-                    <span class="flex flex-col justify-center items-center gap-[2px]">
-                        <span class="w-1 h-1 rounded-full bg-[#a9a05c]"></span>
-                        <span class="w-1 h-1 rounded-full bg-[#a9a05c]"></span>
+                <!-- Updated date to match info.png: 16 September 2025, 18:00 -->
+                <h3 class="text-center text-3xl text-white italic wedding-font text-shadow" data-aos="zoom-in">
+                    <span>16</span>
+                    <span class="mx-1">Сентябр</span>
+                    <span>2025</span>
+                    <br />
+                    <span class="flex justify-center items-center gap-2 inline-flex">
+                        <span>18</span>
+                        <span class="flex flex-col justify-center items-center gap-[2px]">
+                            <span class="w-1 h-1 rounded-full bg-white"></span>
+                            <span class="w-1 h-1 rounded-full bg-white"></span>
+                        </span>
+                        <span>00</span>
                     </span>
-                    <span>00</span>
-                </span>
-            </h3>
-        </div>
-
-        <!-- Location -->
-        <div class="mt-40 text-center">
-            <p class="px-8 mt-5 text-[#7c7647] italic" data-aos="fade-up">
-                Manzil: Qashqadaryo viloyati G'uzor shahri O'zbegim to'yxonasi
-            </p>
-
-            <a href="https://maps.app.goo.gl/HBvdrxD83gTCQPL77?g_st=com.google.maps.preview.copy" target="_blank" class="flex items-center justify-center gap-2 my-8" data-aos="zoom-in">
-                <p class="text-[#a9a05c] underline italic">Manzilni ko'rish</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="#a9a05c" stroke-width="2" class="lucide lucide-map-pin">
-                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-                    <circle cx="12" cy="10" r="3" />
-                </svg>
-            </a>
-
-            <!-- Countdown -->
-            <div class="text-center mt-4 pb-3" data-aos="fade-up">
-                <h2 class="text-xl text-[#a9a05c] mb-4 font-medium wedding-font">To'ygacha qolgan vaqt</h2>
-                <div class="flex justify-center space-x-4 text-[#a9a05c] text-3xl font-bold">
-                    <span id="days">0</span><span>:</span>
-                    <span id="hours">0</span><span>:</span>
-                    <span id="minutes">0</span><span>:</span>
-                    <span id="seconds">0</span>
-                </div>
-                <div class="flex justify-center space-x-4 text-sm text-[#a9a05c] mt-1">
-                    <span>Kun</span><span>Soat</span><span>Daqiqa</span><span>Soniya</span>
-                </div>
+                </h3>
             </div>
 
-            <!-- Credit -->
-            <a href="https://t.me/sd_zuc" target="_blank" class="block mt-20 text-right text-sm text-[#a9a05c] italic pr-2 underline">by Abdullaev</a>
+            <!-- Location -->
+            <div class="mt-20 text-center">
+                <!-- Updated venue to match info.png: VERSAL restaurant -->
+                <p class="px-8 mt-5 text-white italic text-shadow" data-aos="fade-up">
+                    Манзил: «VERSAL» ресторани
+                </p>
+                <p class="px-8 mt-2 text-white italic text-sm text-shadow" data-aos="fade-up">
+                    Стол №____
+                </p>
+
+                <a href="#" class="flex items-center justify-center gap-2 my-8" data-aos="zoom-in">
+                    <!-- Updated link color to white -->
+                    <p class="text-white underline italic text-shadow">Манзилни ко'rish</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2" class="lucide lucide-map-pin">
+                        <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg>
+                </a>
+
+                <!-- Countdown -->
+                <div class="text-center mt-4 pb-3" data-aos="fade-up">
+                    <!-- Updated countdown colors to white -->
+                    <h2 class="text-xl text-white mb-4 font-medium wedding-font text-shadow">To'ygacha qolgan vaqt</h2>
+                    <div class="flex justify-center space-x-4 text-white text-3xl font-bold text-shadow">
+                        <span id="days">0</span><span>:</span>
+                        <span id="hours">0</span><span>:</span>
+                        <span id="minutes">0</span><span>:</span>
+                        <span id="seconds">0</span>
+                    </div>
+                    <div class="flex justify-center space-x-4 text-sm text-white mt-1 text-shadow">
+                        <span>Kun</span><span>Soat</span><span>Daqiqa</span><span>Soniya</span>
+                    </div>
+                </div>
+
+                <!-- Credit -->
+                <a href="https://t.me/sd_zuc" target="_blank" class="block mt-20 text-right text-sm text-white italic pr-2 underline text-shadow">by Abdullaev</a>
+            </div>
         </div>
     </main>
 
@@ -181,7 +259,7 @@
         });
 
         function updateCountdown() {
-            const weddingDate = new Date("2025-09-02T19:00:00");
+            const weddingDate = new Date("2025-09-16T18:00:00");
             const now = new Date();
             const diff = weddingDate - now;
 
@@ -207,34 +285,20 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 👇 Hide scroll button on scroll
-        const scrollBtn = document.getElementById("scrollBtn");
+        // Audio enablement
+        const audio = document.getElementById('bg-music');
+        const enableAudio = () => {
+            audio.muted = false;
+            audio.play().catch(() => { });
+            window.removeEventListener('click', enableAudio);
+            window.removeEventListener('scroll', enableAudio);
+            window.removeEventListener('touchstart', enableAudio);
+        };
 
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                scrollBtn.style.opacity = "0";
-                scrollBtn.style.pointerEvents = "none";
-            } else {
-                scrollBtn.style.opacity = "1";
-                scrollBtn.style.pointerEvents = "auto";
-            }
-        });
-
-         const audio = document.getElementById('bg-music');
-
-    const enableAudio = () => {
-        audio.muted = false;
-        audio.play().catch(() => {});
-        window.removeEventListener('click', enableAudio);
-        window.removeEventListener('scroll', enableAudio);
-        window.removeEventListener('touchstart', enableAudio);
-    };
-
-    window.addEventListener('click', enableAudio);
-    window.addEventListener('scroll', enableAudio);
-    window.addEventListener('touchstart', enableAudio);
+        window.addEventListener('click', enableAudio);
+        window.addEventListener('scroll', enableAudio);
+        window.addEventListener('touchstart', enableAudio);
     </script>
-
 
 </body>
 </html>
