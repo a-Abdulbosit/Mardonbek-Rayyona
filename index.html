@@ -22,12 +22,8 @@
 
     <!-- Mobile-optimized only CSS -->
     <style>
-    html {
-        scroll-behavior: smooth;
-    }
-
     body {
-        background: #1a1a2e; /* deep navy */
+        background: #1a1a2e; 
         font-family: 'Playfair Display', serif;
         min-height: 100vh;
         margin: 0;
@@ -35,78 +31,84 @@
         position: relative;
     }
 
-    /* Outer beige frame */
+    /* Outer azure frame */
     body::before {
         content: "";
         position: fixed;
         top: 0; left: 0;
         width: 100%; height: 100%;
-        background: #f5f5dc; /* beige */
+        background: #F0FFFF; /* soft azure */
         z-index: -2;
     }
 
-    /* Inner navy background with margin (creates border effect) */
+    /* Inner navy card */
     body::after {
         content: "";
         position: fixed;
-        top: 20px; left: 20px;
-        right: 20px; bottom: 20px;
-        background: #1a1a2e; /* navy */
-        border-radius: 20px;
-        box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        top: 25px; left: 25px;
+        right: 25px; bottom: 25px;
+        background: #1a1a2e;
+        border-radius: 25px;
+        box-shadow: 0 0 50px rgba(0,0,0,0.6);
         z-index: -1;
     }
 
+    /* Text shadow */
     .text-shadow {
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
     }
 
     .wedding-font {
         font-family: 'Great Vibes', cursive;
     }
 
-    /* Flowers */
-    .flower-left,
-    .flower-right {
-        width: 180px; 
-        max-width: 45%; 
-        position: absolute;
-        z-index: 0; /* behind text */
-    }
-    
-    .flower-left {
-        top: -60px;
-        left: -70px;
-    }
-    
-    .flower-right {
-        bottom: -60px;
-        right: -70px;
+    /* Monogram (MR) */
+    .monogram {
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        background: linear-gradient(#1a1a2e, #1a1a2e) padding-box,
+                    linear-gradient(135deg, #FFD700, #FFFACD) border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
     }
 
-    /* Flower animations */
-    @keyframes flowerFadeLeft {
-        from { opacity: 0; transform: translateX(-50px) rotate(15deg); }
-        to { opacity: 1; transform: translateX(0) rotate(35deg); }
-    }
-    @keyframes flowerFadeRight {
-        from { opacity: 0; transform: translateX(50px) rotate(15deg); }
-        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+    .monogram span {
+        font-family: 'Great Vibes', cursive;
+        font-size: 52px;
+        color: #fff;
+        letter-spacing: -3px;
     }
 
-    .flower-animate-left {
-        animation: flowerFadeLeft 1.5s ease forwards;
-    }
-    .flower-animate-right {
-        animation: flowerFadeRight 1.5s ease forwards;
+    /* Title (Taklifnoma) */
+    .title {
+        font-family: 'Playfair Display', serif;
+        font-size: 42px;
+        color: #fff;
+        font-style: italic;
+        position: relative;
+        text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
     }
 
-    /* Content always above */
+    .title::after {
+        content: "";
+        display: block;
+        width: 80%;
+        height: 2px;
+        margin: 8px auto 0;
+        background: linear-gradient(to right, transparent, #FFD700, transparent);
+    }
+
+    /* Content above flowers */
     .content-layer {
         position: relative;
         z-index: 2;
     }
 </style>
+
 
 </head>
 <body>
@@ -120,15 +122,16 @@
     <main class="max-w-full w-full p-2 overflow-x-hidden mx-auto content-layer min-h-screen">
         <div class="flex flex-col gap-5">
 
-            <nav class="flex items-center justify-between p-4 px-6 mb-20" data-aos="fade-down">
-                <div class="w-24 h-36 border-2 border-white rounded-full flex flex-col items-center justify-center">
-                    <span class="text-white text-[36px] wedding-font leading-none -mb-1 -ml-6 text-shadow">M</span>
-                    <span class="text-white text-[42px] wedding-font leading-none -mt-1 text-shadow">R</span>
+            <nav class="flex flex-col items-center gap-5 mb-20" data-aos="fade-down">
+    <!-- Monogram -->
+                <div class="monogram">
+                    <span>MR</span>
                 </div>
-                <div class="pr-4 text-5xl text-white text-shadow wedding-font">
-                    Taklifnoma
-                </div>
+            
+                <!-- Title -->
+                <div class="title">Taklifnoma</div>
             </nav>
+
 
             <!-- Couple Section -->
             <div class="relative py-5 space-y-5 text-shadow">
