@@ -20,7 +20,7 @@
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-    <!-- Mobile-optimized only CSS -->
+    <!-- Mobile-optimized CSS -->
     <style>
         html {
             scroll-behavior: smooth;
@@ -30,6 +30,22 @@
             background: #1a1a2e;
             font-family: 'Playfair Display', serif;
             min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* background image behind everything */
+        .background-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("C:/Users/Zuc/Desktop/Mardonbek-Rayyona/images/Backround-removebg-preview.png")
+                        no-repeat center center;
+            background-size: contain;
+            opacity: 0.25; /* faint so text is visible */
+            z-index: 0;
         }
 
         .text-shadow {
@@ -40,11 +56,11 @@
             font-family: 'Great Vibes', cursive;
         }
 
-        /* Flowers mobile-only */
+        /* Flowers */
         .flower-left,
         .flower-right {
-            width: 180px;        /* bigger size */
-            max-width: 45%;      /* responsive fit */
+            width: 180px;
+            max-width: 45%;
             position: absolute;
             z-index: 1;
         }
@@ -61,7 +77,7 @@
             transform: rotate(15deg);
         }
 
-        /* Keep content above flowers */
+        /* keep text/content above background + flowers */
         .content-layer {
             position: relative;
             z-index: 2;
@@ -69,6 +85,8 @@
     </style>
 </head>
 <body>
+    <!-- background image -->
+    <div class="background-image"></div>
 
     <!-- Music autoplay -->
     <audio id="bg-music" autoplay muted loop preload="auto">
@@ -229,6 +247,5 @@
         window.addEventListener('scroll', enableAudio);
         window.addEventListener('touchstart', enableAudio);
     </script>
-
 </body>
 </html>
