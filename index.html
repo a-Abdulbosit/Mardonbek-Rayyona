@@ -27,34 +27,33 @@
     }
 
     body {
-        background: #1a1a2e; /* deep navy */
-        font-family: 'Playfair Display', serif;
-        min-height: 100vh;
-        margin: 0;
-        padding: 0;
-        position: relative;
-        overflow-x: hidden;
-    }
+    background: #1a1a2e;
+    font-family: 'Playfair Display', serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow-x: hidden; /* okay */
+}
 
-    /* Outer white frame */
-    body::before {
-        content: "";
-        position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: #ffffff; /* white */
-        z-index: -3;
-    }
+body::before {
+    content: "";
+    position: fixed; /* changed from absolute to fixed */
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #ffffff;
+    z-index: -3;
+}
 
-    /* Inner navy background */
-    body::after {
-        content: "";
-        position: absolute;
-        top: 15px; left: 15px; right: 15px; bottom: 15px;
-        background: #1a1a2e;
-        border-radius: 18px;
-        box-shadow: 0 0 25px rgba(0,0,0,0.5);
-        z-index: -2;
-    }
+body::after {
+    content: "";
+    position: fixed; /* changed from absolute to fixed */
+    top: 15px; left: 15px; right: 15px; bottom: 15px;
+    background: #1a1a2e;
+    border-radius: 18px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    z-index: -2;
+}
+
 
     .text-shadow {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
