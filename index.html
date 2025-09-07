@@ -32,27 +32,29 @@
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    position: relative;
-    overflow-x: hidden; /* okay */
+    overflow-x: hidden;
 }
 
 body::before {
     content: "";
-    position: fixed; /* changed from absolute to fixed */
+    position: fixed; /* fixed keeps it behind content and scrolls normally */
     top: 0; left: 0; right: 0; bottom: 0;
     background: #ffffff;
     z-index: -3;
+    pointer-events: none; /* ensures touches pass through */
 }
 
 body::after {
     content: "";
-    position: fixed; /* changed from absolute to fixed */
+    position: fixed;
     top: 15px; left: 15px; right: 15px; bottom: 15px;
     background: #1a1a2e;
     border-radius: 18px;
     box-shadow: 0 0 25px rgba(0,0,0,0.5);
     z-index: -2;
+    pointer-events: none;
 }
+
 
 
     .text-shadow {
