@@ -223,8 +223,9 @@
                 <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
                 <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
 
+                <!-- Replace your current button inside the couple section with this -->
                 <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
-                    <button onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})"
+                    <button onclick="scrollToBottom()"
                             class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
                             data-aos="fade-up">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
@@ -232,6 +233,7 @@
                         </svg>
                     </button>
                 </div>
+
             </div>
 
             <!-- Divider -->
@@ -316,6 +318,15 @@
 
     <!-- Scripts -->
     <script>
+        // Scroll to bottom smoothly (fast)
+        function scrollToBottom() {
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth' // natural smooth scroll for mobile
+            });
+        }
+
+
         AOS.init({ duration: 1500 });
 
         function updateCountdown() {
