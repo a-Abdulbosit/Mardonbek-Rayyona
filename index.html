@@ -6,21 +6,20 @@
   <title>Mardonbek & Rayyona</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@600&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- AOS (Animate On Scroll) -->
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
-  <!-- Custom CSS -->
   <style>
     html { scroll-behavior: smooth; }
     body {
-      background: #1a1a2e;
-      font-family: 'Playfair Display', serif;
+      background: #102030;
+      font-family: 'Noto Sans', sans-serif;
       margin: 0;
       min-height: 100vh;
       overflow-x: hidden;
@@ -32,7 +31,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: #ffffff;
+      background: #F8FFFF; /* brighter */
       z-index: -3;
     }
 
@@ -54,22 +53,10 @@
     .flower-left, .flower-right {
       width: 180px;
       position: absolute;
-      z-index: 0; /* behind text */
+      z-index: 0;
     }
-    .flower-left { top: -60px; left: -70px; }
-    .flower-right { bottom: -60px; right: -70px; }
-
-    /* Flower animations */
-    @keyframes flowerFadeLeft {
-      from { opacity: 0; transform: translateX(-50px) rotate(15deg); }
-      to { opacity: 1; transform: translateX(0) rotate(35deg); }
-    }
-    @keyframes flowerFadeRight {
-      from { opacity: 0; transform: translateX(50px) rotate(15deg); }
-      to { opacity: 1; transform: translateX(0) rotate(35deg); }
-    }
-    .flower-animate-left { animation: flowerFadeLeft 1.5s ease forwards; }
-    .flower-animate-right { animation: flowerFadeRight 1.5s ease forwards; }
+    .flower-left { top: -60px; left: -70px; transform: rotate(35deg); }
+    .flower-right { bottom: -60px; right: -70px; transform: rotate(-35deg); }
 
     /* Stars */
     .stars-container {
@@ -105,37 +92,37 @@
   <!-- Stars -->
   <div class="stars-container" id="stars-container"></div>
 
-  <!-- Background music -->
+  <!-- Music -->
   <audio id="bg-music" autoplay muted loop preload="auto">
     <source src="Wagner-Bridal-Chorus-Here-Comes-the-Bride-Piano-Tutorial.m4a" type="audio/mpeg" />
   </audio>
 
   <!-- Content -->
-  <main class="max-w-full p-2 mx-auto content-layer min-h-screen relative z-10">
+  <main class="max-w-full p-2 mx-auto min-h-screen relative z-10">
     <div class="flex flex-col gap-5">
 
       <!-- Header -->
       <nav class="flex items-center justify-between p-4 px-6 mb-20" data-aos="fade-down">
-        <div class="w-24 h-36 border-2 border-white rounded-full flex flex-col items-center justify-center">
+        <div class="w-24 h-36 border-2 border-white rounded-full flex flex-col items-center justify-center shadow-lg">
           <span class="text-white text-[36px] wedding-font leading-none -mb-1 -ml-6 text-shadow">M</span>
           <span class="text-white text-[42px] wedding-font leading-none -mt-1 text-shadow">R</span>
         </div>
-        <div class="pr-4 text-5xl text-white text-shadow wedding-font">
+        <div class="pr-4 text-5xl text-white text-shadow wedding-font tracking-wide">
           Taklifnoma
         </div>
       </nav>
 
       <!-- Couple -->
-      <div class="relative py-5 space-y-5 text-shadow">
-        <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
-        <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
+      <div class="relative py-5 space-y-5 text-shadow min-h-screen flex flex-col justify-center">
+        <img src="images/leftflower-removebg-preview.png" class="flower-left" alt="flower" />
+        <img src="images/rightflower-removebg-preview.png" class="flower-right" alt="flower" />
 
         <h1 class="pl-10 wedding-font text-6xl text-white text-shadow" data-aos="fade-right">Mardonbek</h1>
         <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
         <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
 
         <!-- Scroll Button -->
-        <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
           <button onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})"
                   class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
                   data-aos="fade-up">
@@ -147,7 +134,7 @@
       </div>
 
       <!-- Divider -->
-      <div class="flex flex-col items-center justify-between pt-16 pb-20">
+      <div class="flex flex-col items-center justify-between pt-10 pb-16">
         <div class="relative mx-auto w-[90%] aspect-[3/1]" data-aos="flip-up">
           <img src="images/line.png" alt="line" class="absolute inset-0 w-full h-full object-cover" />
         </div>
@@ -204,8 +191,8 @@
         </a>
 
         <!-- Countdown -->
-        <div class="mt-6 pb-10">
-          <h2 class="text-2xl text-white mb-4 font-medium wedding-font text-shadow">
+        <div class="mt-6 pb-16">
+          <h2 class="text-2xl text-white mb-4 font-semibold text-shadow">
             To'ygacha qolgan вақт
           </h2>
           <div class="flex justify-center space-x-4 text-white text-3xl font-bold text-shadow">
@@ -219,11 +206,9 @@
           </div>
         </div>
       </div>
-
     </div>
   </main>
 
-  <!-- Scripts -->
   <script>
     AOS.init({ duration: 1500 });
 
@@ -232,12 +217,10 @@
       const weddingDate = new Date("2025-09-16T18:00:00");
       const now = new Date();
       const diff = weddingDate - now;
-
       if (diff <= 0) {
         ["days","hours","minutes","seconds"].forEach(id => document.getElementById(id).textContent = 0);
         return;
       }
-
       document.getElementById("days").textContent = Math.floor(diff / (1000*60*60*24));
       document.getElementById("hours").textContent = Math.floor((diff / (1000*60*60)) % 24);
       document.getElementById("minutes").textContent = Math.floor((diff / (1000*60)) % 60);
@@ -246,7 +229,7 @@
     setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Enable music after user interaction
+    // Enable audio after interaction
     const audio = document.getElementById('bg-music');
     const enableAudio = () => {
       audio.muted = false;
