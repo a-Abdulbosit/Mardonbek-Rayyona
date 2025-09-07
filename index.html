@@ -7,6 +7,11 @@
 
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        .wedding-font {
+            font-family: 'Great Vibes', cursive;
+        }
+    </style>
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,178 +20,301 @@
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
+    <!-- Custom CSS -->
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-            font-family: 'Playfair Display', serif;
-            background: #1a1a2e;
-            overflow-x: hidden;
-        }
+    html {
+        scroll-behavior: smooth;
+    }
 
-        .wedding-font { font-family: 'Great Vibes', cursive; }
+    body {
+        background: #1a1a2e; /* deep navy */
+        font-family: 'Playfair Display', serif;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        overflow-x: hidden;
+    }
 
-        /* Fixed background layers */
-        .stars-container, .flower-left, .flower-right {
-            position: fixed;
-            z-index: 0;
-            pointer-events: none;
-        }
+    /* Outer white frame */
+    body::before {
+        content: "";
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: #ffffff; /* white */
+        z-index: -3;
+    }
 
-        .stars-container {
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
+    /* Inner navy background */
+    body::after {
+        content: "";
+        position: absolute;
+        top: 15px; left: 15px; right: 15px; bottom: 15px;
+        background: #1a1a2e;
+        border-radius: 18px;
+        box-shadow: 0 0 25px rgba(0,0,0,0.5);
+        z-index: -2;
+    }
 
-        .flower-left { top: -60px; left: -70px; width: 180px; max-width: 45%; }
-        .flower-right { bottom: -60px; right: -70px; width: 180px; max-width: 45%; }
+    .text-shadow {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
 
-        /* Animations */
-        @keyframes flowerFadeLeft { from { opacity:0; transform:translateX(-50px) rotate(15deg);} to {opacity:1; transform:translateX(0) rotate(35deg);} }
-        @keyframes flowerFadeRight { from { opacity:0; transform:translateX(50px) rotate(15deg);} to {opacity:1; transform:translateX(0) rotate(35deg);} }
-        .flower-animate-left { animation: flowerFadeLeft 1.5s ease forwards; }
-        .flower-animate-right { animation: flowerFadeRight 1.5s ease forwards; }
+    /* Flowers */
+    .flower-left,
+    .flower-right {
+        width: 180px; 
+        max-width: 45%; 
+        position: absolute;
+        z-index: 0; /* behind text */
+    }
+    
+    .flower-left {
+        top: -60px;
+        left: -70px;
+    }
+    
+    .flower-right {
+        bottom: -60px;
+        right: -70px;
+    }
 
-        /* Stars */
-        .star { position:absolute; border-radius:50%; animation: twinkle 2s infinite; background:white; }
-        @keyframes twinkle { 0%,100% {opacity:0; transform: scale(0.5);} 50% {opacity:1; transform: scale(1);} }
+    /* Flower animations */
+    @keyframes flowerFadeLeft {
+        from { opacity: 0; transform: translateX(-50px) rotate(15deg); }
+        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+    }
+    @keyframes flowerFadeRight {
+        from { opacity: 0; transform: translateX(50px) rotate(15deg); }
+        to { opacity: 1; transform: translateX(0) rotate(35deg); }
+    }
 
-        .star-small { width:2px; height:2px; }
-        .star-medium { width:3px; height:3px; }
-        .star-large { width:4px; height:4px; }
+    .flower-animate-left {
+        animation: flowerFadeLeft 1.5s ease forwards;
+    }
+    .flower-animate-right {
+        animation: flowerFadeRight 1.5s ease forwards;
+    }
 
-        .star-golden { background:#ffd700; box-shadow:0 0 6px #ffd700; }
-        .star-golden::before, .star-golden::after { background:#ffd700; }
+    /* Content always above */
+    .content-layer {
+        position: relative;
+        z-index: 2;
+    }
 
-        /* Content Layer */
-        main {
-            position: relative;
-            z-index: 1;
-            min-height: 100vh;
-            padding: 0 0 50px 0;
-        }
+    /* Stars container */
+    .stars-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+    }
 
-        .text-shadow { text-shadow: 2px 2px 4px rgba(0,0,0,0.8); }
+    /* Individual star styling */
+    .star {
+        position: absolute;
+        background: white;
+        border-radius: 50%;
+        animation: twinkle 2s infinite;
+    }
+
+    .star::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 1px;
+        background: white;
+        transform: translate(-50%, -50%);
+    }
+
+    .star::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 1px;
+        height: 100%;
+        background: white;
+        transform: translate(-50%, -50%);
+    }
+
+    /* Different star sizes */
+    .star-small {
+        width: 2px;
+        height: 2px;
+    }
+
+    .star-medium {
+        width: 3px;
+        height: 3px;
+    }
+
+    .star-large {
+        width: 4px;
+        height: 4px;
+    }
+
+    /* Twinkling animations with different delays */
+    @keyframes twinkle {
+        0%, 100% { opacity: 0; transform: scale(0.5); }
+        50% { opacity: 1; transform: scale(1); }
+    }
+
+    .star-delay-1 { animation-delay: 0s; }
+    .star-delay-2 { animation-delay: 0.5s; }
+    .star-delay-3 { animation-delay: 1s; }
+    .star-delay-4 { animation-delay: 1.5s; }
+    .star-delay-5 { animation-delay: 2s; }
+    .star-delay-6 { animation-delay: 2.5s; }
+
+    /* Different animation durations for variety */
+    .star-fast { animation-duration: 1.5s; }
+    .star-normal { animation-duration: 2s; }
+    .star-slow { animation-duration: 3s; }
+
+    /* Golden stars for special effect */
+    .star-golden {
+        background: #ffd700;
+        box-shadow: 0 0 6px #ffd700;
+    }
+
+    .star-golden::before,
+    .star-golden::after {
+        background: #ffd700;
+    }
     </style>
 </head>
 <body>
 
-    <!-- Background stars -->
+    <!-- Added stars container for twinkling effect -->
     <div class="stars-container" id="stars-container"></div>
 
-    <!-- Flowers -->
-    <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
-    <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
-
-    <!-- Background music -->
+    <!-- Music autoplay -->
     <audio id="bg-music" autoplay muted loop preload="auto">
         <source src="Wagner-Bridal-Chorus-Here-Comes-the-Bride-Piano-Tutorial.m4a" type="audio/mpeg" />
     </audio>
 
-    <!-- Main content -->
-    <main class="max-w-full w-full mx-auto content-layer">
+    <!-- Content -->
+    <main class="max-w-full w-full p-2 overflow-x-hidden mx-auto content-layer min-h-screen">
+        <div class="flex flex-col gap-5">
 
-        <!-- Navbar -->
-        <nav class="flex items-center justify-between p-4 px-6 mb-20" data-aos="fade-down">
-            <div class="w-24 h-36 border-2 border-white rounded-full flex flex-col items-center justify-center">
-                <span class="text-white text-[36px] wedding-font leading-none -mb-1 -ml-6 text-shadow">M</span>
-                <span class="text-white text-[42px] wedding-font leading-none -mt-1 text-shadow">R</span>
-            </div>
-            <div class="pr-4 text-5xl text-white text-shadow wedding-font">
-                Taklifnoma
-            </div>
-        </nav>
+            <nav class="flex items-center justify-between p-4 px-6 mb-20" data-aos="fade-down">
+                <div class="w-24 h-36 border-2 border-white rounded-full flex flex-col items-center justify-center">
+                    <span class="text-white text-[36px] wedding-font leading-none -mb-1 -ml-6 text-shadow">M</span>
+                    <span class="text-white text-[42px] wedding-font leading-none -mt-1 text-shadow">R</span>
+                </div>
+                <div class="pr-4 text-5xl text-white text-shadow wedding-font">
+                    Taklifnoma
+                </div>
+            </nav>
 
-        <!-- Couple Section -->
-        <div class="relative py-5 space-y-5 text-shadow">
-            <h1 class="pl-10 wedding-font text-6xl text-white text-shadow" data-aos="fade-right">Mardonbek</h1>
-            <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
-            <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
+            <!-- Couple Section -->
+            <div class="relative py-5 space-y-5 text-shadow">
+                <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
 
-            <!-- Scroll button -->
-            <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
-                <button onclick="scrollToBottom()"
-                        class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
-                        data-aos="fade-up">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="m6 9 6 6 6-6" />
-                    </svg>
-                </button>
-            </div>
-        </div>
+                <h1 class="pl-10 wedding-font text-6xl text-white text-shadow" data-aos="fade-right">Mardonbek</h1>
+                <h1 class="text-center wedding-font text-4xl text-white text-shadow" data-aos="zoom-in">&</h1>
+                <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
 
-        <!-- Divider -->
-        <div class="flex flex-col items-center justify-between pt-16 pb-20">
-            <div class="relative mx-auto w-[90%] aspect-[3/1]" data-aos="flip-up">
-                <img src="images/line.png" alt="line" class="absolute inset-0 w-full h-full object-cover" />
-            </div>
-        </div>
-
-        <!-- Details Section -->
-        <div id="details" class="relative pt-16">
-            <h2 class="text-4xl text-center text-white wedding-font text-shadow" data-aos="flip-up">Assalomu alaykum</h2>
-            <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
-                Ҳурматли қадрдонлар! Сизни никоҳ тўйимиз муносабати билан бўлиб ўтадиган «Висол оқшоми» кечасининг азиз меҳмони бўлишингизга таклиф этамиз.
-            </p>
-            <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
-                Гўзал кечамизда сизни кўришликдан мамнун бўламиз!
-            </p>
-
-            <div class="my-7 w-3/6 mx-auto flex items-center" data-aos="zoom-in">
-                <span class="w-2 h-2 rounded-full border border-white"></span>
-                <div class="w-full h-px bg-white"></div>
-                <span class="w-2 h-2 rounded-full border border-white"></span>
+                <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
+                    <button onclick="document.getElementById('details').scrollIntoView({behavior: 'smooth'})"
+                            class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+                            data-aos="fade-up">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="m6 9 6 6 6-6" />
+                        </svg>
+                    </button>
+                </div>
             </div>
 
-            <h3 class="text-center text-3xl text-white italic wedding-font text-shadow" data-aos="zoom-in">
-                <span>16</span>
-                <span class="mx-1">Сентябр</span>
-                <span>2025</span>
-                <br />
-                <span class="flex justify-center items-center gap-2 inline-flex">
-                    <span>18</span>
-                    <span class="flex flex-col justify-center items-center gap-[2px]">
-                        <span class="w-1 h-1 rounded-full bg-white"></span>
-                        <span class="w-1 h-1 rounded-full bg-white"></span>
+            <!-- Divider -->
+            <div class="flex flex-col items-center justify-between pt-16 pb-20">
+                <div class="relative mx-auto w-[90%] aspect-[3/1]" data-aos="flip-up">
+                    <img src="images/line.png" alt="line" class="absolute inset-0 w-full h-full object-cover" />
+                </div>
+            </div>
+
+            <!-- Details Section -->
+            <div id="details" class="relative pt-16">
+                <img src="images/leftflower-removebg-preview.png" class="flower-left flower-animate-left" alt="flower" />
+                <img src="images/rightflower-removebg-preview.png" class="flower-right flower-animate-right" alt="flower" />
+
+                <h2 class="text-4xl text-center text-white wedding-font text-shadow" data-aos="flip-up">Assalomu alaykum</h2>
+                <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
+                    Ҳурматли қадрдонлар! Сизни никоҳ тўйимиз муносабати билан бўлиб ўтадиган «Висол оқшоми» кечасининг азиз меҳмони бўлишингизга таклиф этамиз.
+                </p>
+                <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
+                    Гўзал кечамизда сизни кўришликдан мамнун бўламиз!
+                </p>
+
+                <div class="my-7 w-3/6 mx-auto flex items-center" data-aos="zoom-in">
+                    <span class="w-2 h-2 rounded-full border border-white"></span>
+                    <div class="w-full h-px bg-white"></div>
+                    <span class="w-2 h-2 rounded-full border border-white"></span>
+                </div>
+
+                <h3 class="text-center text-3xl text-white italic wedding-font text-shadow" data-aos="zoom-in">
+                    <span>16</span>
+                    <span class="mx-1">Сентябр</span>
+                    <span>2025</span>
+                    <br />
+                    <span class="flex justify-center items-center gap-2 inline-flex">
+                        <span>18</span>
+                        <span class="flex flex-col justify-center items-center gap-[2px]">
+                            <span class="w-1 h-1 rounded-full bg-white"></span>
+                            <span class="w-1 h-1 rounded-full bg-white"></span>
+                        </span>
+                        <span>00</span>
                     </span>
-                    <span>00</span>
-                </span>
-            </h3>
-        </div>
-
-        <!-- Location Section -->
-        <div class="mt-12 text-center" data-aos="fade-up">
-            <p class="px-8 mt-5 text-white italic text-shadow">Манзил: «VERSAL» ресторани</p>
-            <a href="https://www.google.com/maps/place/%D0%92%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C/@41.3282599,69.2222692,701m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38ae8b8efc7297ff:0x2b25a59e558906f4!8m2!3d41.3282599!4d69.2248441!16s%2Fg%2F11b7kjrljy"
-               target="_blank"
-               class="flex items-center justify-center gap-2 my-6 hover:scale-105 transition"
-               data-aos="zoom-in">
-                <p class="text-white underline italic text-shadow">Манзилни кўриш</p>
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2">
-                    <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-                    <circle cx="12" cy="10" r="3" />
-                </svg>
-            </a>
-
-            <div class="mt-6 pb-10">
-                <h2 class="text-2xl text-white mb-4 font-medium wedding-font text-shadow">To'ygacha qolgan vaqt</h2>
-                <div class="flex justify-center space-x-4 text-white text-3xl font-bold text-shadow">
-                    <span id="days">0</span><span>:</span>
-                    <span id="hours">0</span><span>:</span>
-                    <span id="minutes">0</span><span>:</span>
-                    <span id="seconds">0</span>
-                </div>
-                <div class="flex justify-center space-x-6 text-sm text-white mt-2 text-shadow">
-                    <span>Kun</span><span>Soat</span><span>Daqiqa</span><span>Soniya</span>
-                </div>
+                </h3>
             </div>
+
+            <!-- Location -->
+            <!-- Location + Countdown -->
+<div class="mt-12 text-center" data-aos="fade-up">
+    <p class="px-8 mt-5 text-white italic text-shadow">
+        Манзил: «VERSAL» ресторани
+    </p>
+
+    <a href="https://www.google.com/maps/place/%D0%92%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C/@41.3282599,69.2222692,701m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38ae8b8efc7297ff:0x2b25a59e558906f4!8m2!3d41.3282599!4d69.2248441!16s%2Fg%2F11b7kjrljy"
+       target="_blank"
+       class="flex items-center justify-center gap-2 my-6 hover:scale-105 transition"
+       data-aos="zoom-in">
+        <p class="text-white underline italic text-shadow">Манзилни кўриш</p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2">
+            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+            <circle cx="12" cy="10" r="3" />
+        </svg>
+    </a>
+
+    <!-- Countdown -->
+    <div class="mt-6 pb-10">
+        <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
+            To'ygacha qolgan вақт
+        </h2>
+        <div class="flex justify-center space-x-4 text-white text-3xl font-bold text-shadow">
+            <span id="days">0</span><span>:</span>
+            <span id="hours">0</span><span>:</span>
+            <span id="minutes">0</span><span>:</span>
+            <span id="seconds">0</span>
+        </div>
+        <div class="flex justify-center space-x-6 text-sm text-white mt-2 text-shadow">
+            <span>Kun</span><span>Soat</span><span>Daqiqa</span><span>Soniya</span>
+        </div>
+    </div>
+</div>
+
         </div>
     </main>
 
+    <!-- Scripts -->
     <script>
         AOS.init({ duration: 1500 });
 
@@ -217,38 +345,60 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        // Audio enablement
         const audio = document.getElementById('bg-music');
         const enableAudio = () => {
             audio.muted = false;
-            audio.play().catch(() => {});
+            audio.play().catch(() => { });
             window.removeEventListener('click', enableAudio);
             window.removeEventListener('scroll', enableAudio);
             window.removeEventListener('touchstart', enableAudio);
         };
+
         window.addEventListener('click', enableAudio);
         window.addEventListener('scroll', enableAudio);
         window.addEventListener('touchstart', enableAudio);
 
+        // Create twinkling stars
         function createStars() {
             const starsContainer = document.getElementById('stars-container');
-            const numberOfStars = 50;
+            const numberOfStars = 50; // Total number of stars
+
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                const sizes = ['star-small','star-medium','star-large'];
-                star.classList.add(sizes[Math.floor(Math.random()*sizes.length)]);
-                star.style.left = Math.random()*100 + '%';
-                star.style.top = Math.random()*100 + '%';
-                if(Math.random() < 0.2) star.classList.add('star-golden');
+                
+                // Random size
+                const sizes = ['star-small', 'star-medium', 'star-large'];
+                const randomSize = sizes[Math.floor(Math.random() * sizes.length)];
+                star.classList.add(randomSize);
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                const delays = ['star-delay-1', 'star-delay-2', 'star-delay-3', 'star-delay-4', 'star-delay-5', 'star-delay-6'];
+                const randomDelay = delays[Math.floor(Math.random() * delays.length)];
+                star.classList.add(randomDelay);
+                
+                // Random animation speed
+                const speeds = ['star-fast', 'star-normal', 'star-slow'];
+                const randomSpeed = speeds[Math.floor(Math.random() * speeds.length)];
+                star.classList.add(randomSpeed);
+                
+                // Some stars are golden for special effect
+                if (Math.random() < 0.2) { // 20% chance for golden stars
+                    star.classList.add('star-golden');
+                }
+                
                 starsContainer.appendChild(star);
             }
         }
 
-        function scrollToBottom() {
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-        }
-
+        // Initialize stars when page loads
         window.addEventListener('load', createStars);
     </script>
+
 </body>
 </html>
