@@ -11,29 +11,37 @@
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- AOS (Animate On Scroll) -->
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'Playfair Display', serif;
+      min-height: 100vh;
+      background: #1a1a2e;
       overflow-x: hidden;
-      background: transparent;
       position: relative;
     }
 
-    /* Background layers as fixed elements for smooth scrolling */
-    .background-frame {
-      position: fixed;
+    /* Outer white frame */
+    body::before {
+      content: "";
+      position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: #fff;
+      background: #ffffff;
       z-index: -3;
     }
 
-    .background-inner {
-      position: fixed;
+    /* Inner navy background */
+    body::after {
+      content: "";
+      position: absolute;
       top: 15px; left: 15px; right: 15px; bottom: 15px;
       background: #1a1a2e;
       border-radius: 18px;
@@ -56,7 +64,6 @@
       position: absolute;
       z-index: 0;
     }
-
     .flower-left { top: -60px; left: -70px; }
     .flower-right { bottom: -60px; right: -70px; }
 
@@ -75,7 +82,7 @@
 
     /* Stars */
     .stars-container {
-      position: fixed;
+      position: absolute;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
@@ -111,25 +118,16 @@
 
     .star-golden::before, .star-golden::after { background: #ffd700; }
 
-    /* Smooth scrolling and main content */
-    html { scroll-behavior: smooth; }
+    /* Content */
     main {
       position: relative;
       z-index: 2;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      min-height: 100vh;
-      padding: 2rem;
       max-width: 100%;
-      margin: 0 auto;
+      padding: 2rem;
     }
   </style>
 </head>
 <body>
-
-  <!-- Background layers -->
-  <div class="background-frame"></div>
-  <div class="background-inner"></div>
 
   <!-- Stars -->
   <div class="stars-container" id="stars-container"></div>
@@ -139,7 +137,6 @@
     <source src="Wagner-Bridal-Chorus-Here-Comes-the-Bride-Piano-Tutorial.m4a" type="audio/mpeg" />
   </audio>
 
-  <!-- Main Content -->
   <main class="content-layer">
     <div class="flex flex-col gap-5">
 
@@ -162,7 +159,7 @@
         <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
 
         <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
-          <button onclick="scrollToDetails()"
+          <button onclick="document.getElementById('details').scrollIntoView({behavior:'smooth'})"
                   class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
                   data-aos="fade-up">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
@@ -191,65 +188,11 @@
         <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">
           Гўзал кечамизда сизни кўришликдан мамнун бўламиз!
         </p>
-
-        <div class="my-7 w-3/6 mx-auto flex items-center" data-aos="zoom-in">
-          <span class="w-2 h-2 rounded-full border border-white"></span>
-          <div class="w-full h-px bg-white"></div>
-          <span class="w-2 h-2 rounded-full border border-white"></span>
-        </div>
-
-        <h3 class="text-center text-3xl text-white italic wedding-font text-shadow" data-aos="zoom-in">
-          <span>16</span>
-          <span class="mx-1">Сентябр</span>
-          <span>2025</span>
-          <br />
-          <span class="flex justify-center items-center gap-2 inline-flex">
-            <span>18</span>
-            <span class="flex flex-col justify-center items-center gap-[2px]">
-              <span class="w-1 h-1 rounded-full bg-white"></span>
-              <span class="w-1 h-1 rounded-full bg-white"></span>
-            </span>
-            <span>00</span>
-          </span>
-        </h3>
-      </div>
-
-      <!-- Location + Countdown -->
-      <div class="mt-12 text-center" data-aos="fade-up">
-        <p class="px-8 mt-5 text-white italic text-shadow">
-          Манзил: «VERSAL» ресторани
-        </p>
-
-        <a href="https://www.google.com/maps/place/%D0%92%D0%B5%D1%80%D1%81%D0%B0%D0%BB%D1%8C/@41.3282599,69.2222692,701m/data=!3m2!1e3!4b1!4m6!3m5!1s0x38ae8b8efc7297ff:0x2b25a59e558906f4!8m2!3d41.3282599!4d69.2248441!16s%2Fg%2F11b7kjrljy"
-           target="_blank"
-           class="flex items-center justify-center gap-2 my-6 hover:scale-105 transition"
-           data-aos="zoom-in">
-          <p class="text-white underline italic text-shadow">Манзилни кўриш</p>
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="white" stroke-width="2">
-            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
-            <circle cx="12" cy="10" r="3" />
-          </svg>
-        </a>
-
-        <!-- Countdown -->
-        <div class="mt-6 pb-10">
-          <p class="px-8 text-center mt-5 text-white italic text-shadow" data-aos="fade-up">To'ygacha qolgan вақт</p>
-          <div class="flex justify-center space-x-4 text-white text-3xl font-bold text-shadow">
-            <span id="days">0</span><span>:</span>
-            <span id="hours">0</span><span>:</span>
-            <span id="minutes">0</span><span>:</span>
-            <span id="seconds">0</span>
-          </div>
-          <div class="flex justify-center space-x-6 text-sm text-white mt-2 text-shadow">
-            <span>Kun</span><span>Soat</span><span>Daqiqa</span><span>Soniya</span>
-          </div>
-        </div>
       </div>
 
     </div>
   </main>
 
-  <!-- Scripts -->
   <script>
     AOS.init({ duration: 1500 });
 
@@ -258,45 +201,29 @@
       const weddingDate = new Date("2025-09-16T18:00:00");
       const now = new Date();
       const diff = weddingDate - now;
-      if (diff <= 0) return document.querySelectorAll("#days,#hours,#minutes,#seconds").forEach(el => el.textContent = 0);
-
-      document.getElementById("days").textContent = Math.floor(diff / (1000*60*60*24));
-      document.getElementById("hours").textContent = Math.floor((diff / (1000*60*60)) % 24);
-      document.getElementById("minutes").textContent = Math.floor((diff / (1000*60)) % 60);
-      document.getElementById("seconds").textContent = Math.floor((diff / 1000) % 60);
+      if(diff<=0) return;
     }
-    setInterval(updateCountdown, 1000); updateCountdown();
+    setInterval(updateCountdown,1000);
+    updateCountdown();
 
     // Audio enable
     const audio = document.getElementById('bg-music');
-    const enableAudio = () => { audio.muted = false; audio.play().catch(()=>{}); 
-      window.removeEventListener('click', enableAudio); 
-      window.removeEventListener('scroll', enableAudio);
-      window.removeEventListener('touchstart', enableAudio);
-    };
+    const enableAudio = () => { audio.muted=false; audio.play().catch(()=>{}); };
     window.addEventListener('click', enableAudio);
     window.addEventListener('scroll', enableAudio);
     window.addEventListener('touchstart', enableAudio);
 
-    // Scroll button
-    function scrollToDetails() {
-      const element = document.getElementById('details');
-      const offset = 20; // optional
-      window.scrollTo({ top: element.offsetTop - offset, behavior: 'smooth' });
-    }
-
     // Stars
     function createStars() {
-      const starsContainer = document.getElementById('stars-container');
+      const container = document.getElementById('stars-container');
       for(let i=0;i<50;i++){
-        const star = document.createElement('div');
-        star.className = 'star ' + ['star-small','star-medium','star-large'][Math.floor(Math.random()*3)]
-                     + ' ' + ['star-fast','star-normal','star-slow'][Math.floor(Math.random()*3)]
-                     + ' ' + ['star-delay-1','star-delay-2','star-delay-3','star-delay-4','star-delay-5','star-delay-6'][Math.floor(Math.random()*6)];
-        star.style.left = Math.random()*100 + '%';
-        star.style.top = Math.random()*100 + '%';
-        if(Math.random()<0.2) star.classList.add('star-golden');
-        starsContainer.appendChild(star);
+        const s=document.createElement('div');
+        s.className='star '+['star-small','star-medium','star-large'][Math.floor(Math.random()*3)]
+                    +' '+['star-fast','star-normal','star-slow'][Math.floor(Math.random()*3)];
+        s.style.left=Math.random()*100+'%';
+        s.style.top=Math.random()*100+'%';
+        if(Math.random()<0.2) s.classList.add('star-golden');
+        container.appendChild(s);
       }
     }
     window.addEventListener('load', createStars);
