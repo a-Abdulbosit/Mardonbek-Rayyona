@@ -22,14 +22,15 @@
 
     <!-- Custom CSS -->
     <style>
-        html {
+        html, body {
+            height: 100%;
+            overflow-y: auto; /* ✅ allows finger scroll */
             scroll-behavior: smooth;
         }
 
         body {
             background: #1a1a2e;
             font-family: 'Playfair Display', serif;
-            min-height: 100vh;
             margin: 0;
             padding: 0;
             position: relative;
@@ -180,7 +181,7 @@
                 <h1 class="pr-10 flex justify-end wedding-font text-6xl text-white text-shadow" data-aos="fade-left">Rayyona</h1>
 
                 <div class="absolute -bottom-20 left-1/2 transform -translate-x-1/2">
-                    <!-- Updated button to use custom scroll -->
+                    <!-- Fixed scroll button -->
                     <button onclick="scrollToBottom()"
                             class="w-12 h-12 border-2 border-white rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
                             data-aos="fade-up">
@@ -312,12 +313,10 @@
         window.addEventListener('scroll', enableAudio);
         window.addEventListener('touchstart', enableAudio);
 
-        // Custom scroll function with extra offset
-        function scrollDownMore() {
-            const target = document.getElementById('details');
-            const offset = 300; // move extra pixels further
-            const y = target.getBoundingClientRect().top + window.scrollY - offset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
+        // ✅ Scroll all the way to last section (bottom)
+        function scrollToBottom() {
+            const lastSection = document.querySelector("main > div:last-child");
+            lastSection.scrollIntoView({ behavior: "smooth", block: "end" });
         }
 
         // Stars
@@ -342,12 +341,6 @@
             }
         }
 
-        function scrollToBottom() {
-    window.scrollTo({ 
-        top: document.body.scrollHeight, 
-        behavior: 'smooth' 
-    });
-}
         window.addEventListener('load', createStars);
     </script>
 
